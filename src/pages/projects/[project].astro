@@ -1,0 +1,67 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { PROJECTS } from '@/lib/projects'
+import { toKebabCase } from '@/utils/toKebabCase'
+import ListSection from '@@/project-details-page/ListSection.astro'
+import { ProjectImagesCarousel } from '@@/project-details-page/ProjectImagesCarousel'
+import ProjectButtons from '@@/projects/ProjectButtons.astro'
+import Technologies from '@@/projects/Technologies.astro'
+import { BoltIcon, CodeIcon } from '@icons'
+
+const { project: projectSlug } = Astro.params
+const project = PROJECTS.find((p) => toKebabCase(p.name) === projectSlug)
+
+// Gather all technologies used in the project
+const technologies = project ? [...project.mainTechnologies] : []
+if (project?.extraTechnologies) technologies.push(...project.extraTechnologies)
+
+const { pageTitle, pageDescription } = project
+  ? {
+      pageTitle: `${project.name} — Kevin's Portfolio`,
+      pageDescription: project.overview,
+    }
+  : {
+      pageTitle: "Project not found — Kevin's Portfolio",
+      pageDescription: 'The project you are looking for does not exist.',
+    }
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  {
+    project ? (
+      <div class='margin-top-page flex flex-col gap-4'>
+        <h1 class='text-white text-5xl font-bold'>{project.name}</h1>
+        <p class='text-white/90 text-lg xl:w-4/5 text-pretty mb-4'>
+          {project.description}
+        </p>
+
+        <Technologies technologies={technologies} class='flex-wrap' />
+
+        <ProjectButtons
+          name={project.name}
+          code={project.code}
+          preview={project.preview}
+        />
+
+        {project.carouselImgs && (
+          <ProjectImagesCarousel
+            projectName={project.name}
+            images={project.carouselImgs}
+            client:load
+          />
+        )}
+
+        <ListSection
+          title='Features'
+          list={project.features}
+          icon={BoltIcon}
+          split
+        />
+
+        <ListSection title='My Work' list={project.myWork} icon={CodeIcon} />
+      </div>
+    ) : (
+      <h1 class='text-xl text-white mt-(--page-mt)'>Project not found</h1>
+    )
+  }
+</Layout>

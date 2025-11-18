@@ -3,25 +3,18 @@ interface Props {
   class?: string
   name: string
   src: string
-  href: string
 }
 
-const { class: className, href, src, name } = Astro.props
+const { class: className, src, name } = Astro.props
 ---
 
-<a
-  href={href}
-  aria-label=`Preview the project ${name}.`
-  class=`overflow-hidden ${className}`
-  rel='noopener noreferrer'
-  target='_blank'
->
+<div class=`overflow-hidden ${className}`>
   <img
     class='object-cover h-full w-full transition-transform duration-300 group-hover:scale-[1.025]'
     src={src}
     alt=`Screenshot of the project ${name}.`
   />
-</a>
+</div>
 
 <style>
   @import 'tailwindcss';

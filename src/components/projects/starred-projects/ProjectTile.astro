@@ -1,8 +1,7 @@
 ---
-import { GithubIcon, PreviewIcon } from '@icons'
 import type { Project } from '@types'
-import Button from '../Button.astro'
-import CodeAndPreviewButtons from '../CodeAndPreviewButtons.astro'
+import ProjectButtons from '../ProjectButtons.astro'
+import ProjectHyperlink from '../ProjectHyperlink.astro'
 import Technologies from '../Technologies.astro'
 import Images from './images/Images.astro'
 
@@ -26,21 +25,23 @@ const {
   tabindex='0'
   role='link'
   class=`
-    border-proj-card-border relative overflow-hidden flex md:flex-row-reverse flex-col-reverse 
-    xl:rounded-xl rounded-2xl md:p-3 md:gap-8 gap-4 hover:brightness-110 transition group
-    md:bg-proj-card-bg md:border-2 xl:flex-row xl:p-12 xl:min-h-77.5 xl:gap-0
+    relative overflow-hidden flex md:flex-row-reverse flex-col-reverse 
+    xl:rounded-xl rounded-2xl md:p-3 md:gap-8 gap-4 hover:brightness-110 group
+    xl:flex-row xl:p-12 xl:min-h-77.5 xl:gap-0
+    project-card not-md:bg-transparent not-md:border-transparent
 
     nth-1:col-span-2 nth-2:col-span-2
-
     nth-1:xl:order-1 nth-2:xl:order-4
     nth-3:xl:order-2 nth-4:xl:order-3
   `
 >
+  <ProjectHyperlink projectName={name} />
+
   <div
     class=`
       flex flex-col md:h-full justify-start gap-3 
       md:min-w-72 md:max-w-96 md:gap-5 md:pt-6
-      xl:min-w-0 xl:p-0 xl:w-64
+      xl:min-w-0 xl:p-0 xl:w-64 relative
     `
   >
     <section class=`flex flex-col md:gap-3 gap-2 xl:gap-2`>
@@ -56,12 +57,8 @@ const {
       </p>
     </section>
 
-    <CodeAndPreviewButtons {...{ code, preview, name }} />
+    <ProjectButtons {...{ code, preview, name }} />
   </div>
 
-  {
-    gridImgs && carouselImgs && (
-      <Images {...{ name, gridImgs, carouselImgs }} projectUrl={preview} />
-    )
-  }
+  {gridImgs && carouselImgs && <Images {...{ name, gridImgs, carouselImgs }} />}
 </article>

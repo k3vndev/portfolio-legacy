@@ -1,0 +1,13 @@
+---
+import { toKebabCase } from '@/utils/toKebabCase'
+
+interface Props {
+  projectName: string
+}
+
+const { projectName } = Astro.props
+const href = `/projects/${toKebabCase(projectName)}`
+---
+
+<a href={href} class='group cursor-pointer absolute left-0 top-0 size-full z-20'
+></a>

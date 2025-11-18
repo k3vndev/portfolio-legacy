@@ -3,16 +3,13 @@ import ImageTile from './ImageTile.astro'
 
 interface Props {
   name: string
-  projectUrl: string
-
   gridImgs: string[]
   carouselImgs: string[]
 }
 
-const { name, projectUrl, gridImgs, carouselImgs } = Astro.props
+const { name, gridImgs, carouselImgs } = Astro.props
 
 const imageProps = {
-  href: projectUrl,
   name: name,
 }
 

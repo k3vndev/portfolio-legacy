@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
     overview:
       'Create tiny masterpieces in a retro 8×8 pixel-art style. Paint, share, and even play minigames. All inside this handcrafted web platform.',
     description:
-      'Enjoy creating tiny masterpieces in a retro 8×8 pixel-art style. Paint and share your creations with ease, and have fun playing built-in minigames. All of this is available within a lovingly handcrafted web platform designed for pixel art enthusiasts.',
+      'Enjoy creating tiny masterpieces in a retro 8×8 pixel-art style. Paint and share your creations with ease, and have fun playing built-in minigames. All of this is available within a lovingly handcrafted web platform designed for pixel art enthusiasts ✨',
     features: [
       '🎨 Paint — Create pixel masterpieces on a cozy 8×8 canvas with unlimited colors and cool animations.',
       '💾 Save, export & import — Keep your creations safe, share them, or load them back anytime.',
@@ -35,9 +35,19 @@ export const PROJECTS: Project[] = [
       '👩‍🎨 User friendly design — Intuitive and accessible for artists of all skill levels.',
       '🚫 No login required — No barriers, no accounts. Just create and share instantly.'
     ],
-    myWork: [],
+    myWork: [
+      'Designed and implemented the pixel-painting engine with custom tools, save/export features (PNG & JSON), and a gallery for publishing and exploring community art.',
+      'Built a responsive, handcrafted UI with React, Tailwind, Zustand, and a MongoDB backend to handle storage and scalability.',
+      'Delivered an intuitive U X with attention to detail, applying design thinking, adaptability, and problem-solving, while driving the project independently from concept to launch.'
+    ],
     gridImgs: ['/projects/pixi-paint/starred-1.gif', '/projects/pixi-paint/starred-2.webp'],
-    carouselImgs: ['/projects/pixi-paint/carousel-1.webp'],
+    carouselImgs: [
+      '/projects/pixi-paint/carousel-1.webp',
+      '/projects/pixi-paint/carousel-2.webp',
+      '/projects/pixi-paint/carousel-3.webp',
+      '/projects/pixi-paint/carousel-4.webp',
+      '/projects/pixi-paint/carousel-5.webp'
+    ],
     mainTechnologies: [T.NEXTJS, T.MONGODB],
     extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS],
     code: 'https://github.com/K3vnDev/pixi-paint',

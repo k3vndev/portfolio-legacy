@@ -1,6 +1,7 @@
 ---
 import type { Project } from '@types'
-import CodeAndPreviewButtons from '../CodeAndPreviewButtons.astro'
+import ProjectButtons from '../ProjectButtons.astro'
+import ProjectHyperlink from '../ProjectHyperlink.astro'
 import Technologies from '../Technologies.astro'
 
 interface Props extends Project {}
@@ -11,9 +12,9 @@ const { name, overview, mainTechnologies, code, preview, carouselImgs } =
 const imageSrc = (carouselImgs ?? [])[0] ?? ''
 ---
 
-<article
-  class='flex flex-col bg-proj-card-bg border-proj-card-border border-2 rounded-xl overflow-clip group'
->
+<article class='flex flex-col project-card rounded-xl overflow-clip relative'>
+  <ProjectHyperlink projectName={name} />
+
   <div class='sm:h-50 h-40 w-full relative'>
     <img
       src={imageSrc}
@@ -27,7 +28,7 @@ const imageSrc = (carouselImgs ?? [])[0] ?? ''
     <Technologies technologies={mainTechnologies} />
     <p class='text-zinc-300'>{overview}</p>
 
-    <CodeAndPreviewButtons {...{ code, preview, name }} class='mt-4' />
+    <ProjectButtons {...{ code, preview, name }} class='mt-4' />
   </div>
 </article>
 
