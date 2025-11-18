@@ -1,0 +1,38 @@
+---
+import type { Project } from '@types'
+import CodeAndPreviewButtons from '../CodeAndPreviewButtons.astro'
+import Technologies from '../Technologies.astro'
+
+interface Props extends Project {}
+
+const { name, overview, mainTechnologies, code, preview, carouselImgs } =
+  Astro.props
+
+const imageSrc = (carouselImgs ?? [])[0] ?? ''
+---
+
+<article
+  class='flex flex-col bg-proj-card-bg border-proj-card-border border-2 rounded-xl overflow-clip group'
+>
+  <div class='sm:h-50 h-40 w-full relative'>
+    <img
+      src={imageSrc}
+      alt={name}
+      class='w-full group-hover:w-[110%] h-[140%] object-cover object-center absolute top-0 left-0 -z-10'
+    />
+  </div>
+
+  <div class='flex flex-col p-8 gap-2'>
+    <h2 class='text-white font-bold text-2xl mb-2'>{name}</h2>
+    <Technologies technologies={mainTechnologies} />
+    <p class='text-zinc-300'>{overview}</p>
+
+    <CodeAndPreviewButtons {...{ code, preview, name }} class='mt-4' />
+  </div>
+</article>
+
+<style>
+  img {
+    mask-image: linear-gradient(to bottom, black 50%, transparent);
+  }
+</style>

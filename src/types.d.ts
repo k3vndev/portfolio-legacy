@@ -7,10 +7,18 @@ export type Tecnology = {
 
 export interface Project {
   name: string
-  desc: string
-  starredImgs?: string[]
-  defaultImgs?: string[]
-  technologies: Tecnology[]
+  overview: string
+  description: string
+  features: string[]
+  myWork: string[]
+
+  gridImgs?: string[]
+  carouselImgs?: string[]
+
+  mainTechnologies: Tecnology[]
+  extraTechnologies?: Tecnology[]
+  
+  starred?: boolean
   code: string
   preview: string
 }

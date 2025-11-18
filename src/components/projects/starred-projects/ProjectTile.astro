@@ -10,8 +10,15 @@ type Props = Project & {
   index: number
 }
 
-const { name, desc, technologies, code, preview, starredImgs } =
-  Astro.props as Props
+const {
+  name,
+  overview: desc,
+  mainTechnologies: technologies,
+  code,
+  preview,
+  gridImgs,
+  carouselImgs,
+} = Astro.props as Props
 ---
 
 <article
@@ -52,5 +59,9 @@ const { name, desc, technologies, code, preview, starredImgs } =
     <CodeAndPreviewButtons {...{ code, preview, name }} />
   </div>
 
-  {starredImgs && <Images {...{ name, starredImgs }} projectUrl={preview} />}
+  {
+    gridImgs && carouselImgs && (
+      <Images {...{ name, gridImgs, carouselImgs }} projectUrl={preview} />
+    )
+  }
 </article>

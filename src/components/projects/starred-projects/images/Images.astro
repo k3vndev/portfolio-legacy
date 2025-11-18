@@ -4,24 +4,26 @@ import ImageTile from './ImageTile.astro'
 interface Props {
   name: string
   projectUrl: string
-  starredImgs: string[]
+
+  gridImgs: string[]
+  carouselImgs: string[]
 }
 
-const { name, projectUrl, starredImgs } = Astro.props
+const { name, projectUrl, gridImgs, carouselImgs } = Astro.props
 
 const imageProps = {
   href: projectUrl,
   name: name,
 }
 
-const isBig = starredImgs.length > 2
+const isBig = gridImgs.length > 1
 const mainImgSize = isBig ? 'w-[240px] h-[200px]' : 'w-[190px] h-[260px]'
 ---
 
 <!-- On Grid Images -->{
   isBig && (
     <ImageTile
-      src={starredImgs[1]}
+      src={gridImgs[1]}
       class={`
         default-image right-[75px] bottom-[60px] w-[250px] h-[200px]
         rounded-xl border border-[#333] z-0 xl:block hidden
@@ -31,14 +33,14 @@ const mainImgSize = isBig ? 'w-[240px] h-[200px]' : 'w-[190px] h-[260px]'
   )
 }
 <ImageTile
-  src={starredImgs[0]}
+  src={gridImgs[0]}
   class={`default-image aligned-rb z-10 xl:block hidden ${mainImgSize} `}
   {...imageProps}
 />
 
 <!-- On List Image -->
 <ImageTile
-  src={starredImgs[starredImgs.length - 1]}
+  src={carouselImgs[0]}
   class={`
     xl:hidden border border-[#333] rounded-xl shadow-lg
     md:h-64 h-56 max-w-96 sm:min-w-96 w-auto sm:w-96
