@@ -1,18 +1,16 @@
 ---
-import { toKebabCase } from '@/utils/toKebabCase'
+import { getProjectImages } from '@/utils/getProjectImages'
 import type { Project } from '@types'
 import ProjectButtons from '../ProjectButtons.astro'
 import ProjectHyperlink from '../ProjectHyperlink.astro'
 import Technologies from '../Technologies.astro'
 
 interface Props extends Project {}
+const { name, overview, mainTechnologies, code, preview } = Astro.props
 
-const { name, overview, mainTechnologies, code, preview, carouselImgs } =
-  Astro.props
-
-const imageSrc = carouselImgs
-  ? `/projects/${toKebabCase(name)}/${carouselImgs[0] ?? ''}`
-  : ''
+// Fetch the first image for the project tile
+const carouselImgs = await getProjectImages(name, 'carousel')
+const [imageSrc] = carouselImgs
 ---
 
 <article

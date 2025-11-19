@@ -1,17 +1,20 @@
 ---
+import { getProjectImages } from '@/utils/getProjectImages'
 import ImageTile from './ImageTile.astro'
 
 interface Props {
   name: string
-  gridImgs: string[]
-  carouselImgs: string[]
 }
 
-const { name, gridImgs, carouselImgs } = Astro.props
+const { name } = Astro.props
 
 const imageProps = {
   name: name,
 }
+
+// Feching images based on project name
+const gridImgs = await getProjectImages(name, 'starred')
+const carouselImgs = await getProjectImages(name, 'carousel')
 
 const isBig = gridImgs.length > 1
 const mainImgSize = isBig ? 'w-[240px] h-[200px]' : 'w-[190px] h-[260px]'

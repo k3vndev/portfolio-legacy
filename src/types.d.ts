@@ -12,9 +12,6 @@ export interface Project {
   features: string[]
   myRole: string[]
 
-  gridImgs?: string[]
-  carouselImgs?: string[]
-
   mainTechnologies: Tecnology[]
   extraTechnologies?: Tecnology[]
 

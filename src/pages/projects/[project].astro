@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { PROJECTS } from '@/lib/projects'
+import { getProjectImages } from '@/utils/getProjectImages'
 import { toKebabCase } from '@/utils/toKebabCase'
 import ListSection from '@@/project-details-page/ListSection.astro'
 import { ProjectImagesCarousel } from '@@/project-details-page/ProjectImagesCarousel'
@@ -14,6 +15,11 @@ const project = PROJECTS.find((p) => toKebabCase(p.name) === projectSlug)
 // Gather all technologies used in the project
 const technologies = project ? [...project.mainTechnologies] : []
 if (project?.extraTechnologies) technologies.push(...project.extraTechnologies)
+
+// Fetch the carousel images for the project
+const carouselImgs = project
+  ? await getProjectImages(project.name, 'carousel')
+  : []
 
 const { pageTitle, pageDescription } = project
   ? {
@@ -43,11 +49,10 @@ const { pageTitle, pageDescription } = project
           preview={project.preview}
         />
 
-        {project.carouselImgs && (
+        {carouselImgs && (
           <ProjectImagesCarousel
-            projectSlug={projectSlug ?? ''}
             projectName={project.name}
-            images={project.carouselImgs}
+            images={carouselImgs}
             client:load
           />
         )}

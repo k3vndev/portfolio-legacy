@@ -3,20 +3,17 @@ import type { Project } from '@types'
 
 /*
   Projects data structure:
-
   - Overview: Short description of the project
   - Description: Long description of the project
   - My work: List of things I did or acomplished in the project
   - Features: List of features of the project
-  - Grid images: Images to show in the projects grid of the Home section. Only 4 projects can have this
-  - Carousel images: Images to show in the project details carousel. First image will be the main one
-
   - Main technologies: Technologies that were mainly used in the project (max 3)
   - Extra technologies: Other technologies used in the project for details
   - Code: Link to the code repository
   - Preview: Link to the live preview of the project
-
   - Starred: If the project is starred or not. Starred projects will have a star icon in the explore projects page
+
+  Note: Images are stored in the public/projects/[project-slug] folder and are automatically loaded based on the project name
 */
 
 export const PROJECTS: Project[] = [
@@ -39,14 +36,6 @@ export const PROJECTS: Project[] = [
       'Designed and implemented the pixel-painting engine with custom tools, save/export features (PNG & JSON), and a gallery for publishing and exploring community art.',
       'Built a responsive, handcrafted UI with React, Tailwind, Zustand, and a MongoDB backend to handle storage and scalability.',
       'Delivered an intuitive U X with attention to detail, applying design thinking, adaptability, and problem-solving, while driving the project independently from concept to launch.'
-    ],
-    gridImgs: ['starred-1.gif', 'starred-2.webp'],
-    carouselImgs: [
-      'carousel-1.webp',
-      'carousel-2.webp',
-      'carousel-3.webp',
-      'carousel-4.webp',
-      'carousel-5.webp'
     ],
     mainTechnologies: [T.NEXTJS, T.MONGODB],
     extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS],
@@ -77,16 +66,6 @@ export const PROJECTS: Project[] = [
       'Architected a scalable full-stack system with Next.js, TypeScript, Zustand, Supabase, Zod, and TailwindCSS, balancing reliability with ease of use.',
       'Applied problem-solving, architectural planning, and self-driven iteration to deliver a stable, intuitive learning platform from scratch.'
     ],
-    gridImgs: ['starred-1.webp', 'starred-2.webp'],
-    carouselImgs: [
-      'carousel-1.webp',
-      'carousel-2.webp',
-      'carousel-3.webp',
-      'carousel-4.webp',
-      'carousel-5.webp',
-      'carousel-6.webp',
-      'carousel-7.webp'
-    ],
     mainTechnologies: [T.NEXTJS, T.SUPABASE, T.OPENAI],
     extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS],
     code: 'https://github.com/K3vnDev/studymate',
@@ -115,14 +94,6 @@ export const PROJECTS: Project[] = [
       'Developed the frontend with React, Zustand for state, and Vite for fast dev builds; paid close attention to animations and UX polish.',
       'Built the backend API with Node.js + Express, validated inputs with Zod, and used MongoDB to store quizzes, public IDs, and ownership metadata.'
     ],
-    gridImgs: ['starred-1.webp'],
-    carouselImgs: [
-      'carousel-1.webp',
-      'carousel-2.webp',
-      'carousel-3.webp',
-      'carousel-4.webp',
-      'carousel-5.webp'
-    ],
     mainTechnologies: [T.REACT, T.NODEJS, T.MONGODB],
     code: 'https://github.com/K3vnDev/quizzie',
     preview: 'https://quizzie-wb.netlify.app',
@@ -150,8 +121,6 @@ export const PROJECTS: Project[] = [
       'Created a clean, responsive UI with dynamic controls, hover detection, and an intuitive layout focused on speed and clarity.',
       'Handled state management, timeline persistence, and all user interactions with a focus on simplicity and fluid UX.'
     ],
-    gridImgs: ['starred-1.webp'],
-    carouselImgs: ['carousel-1.webp', 'carousel-2.webp', 'carousel-3.webp'],
     mainTechnologies: [T.REACT, T.TYPESCRIPT],
     code: 'https://github.com/K3vnDev/timeline-creator',
     preview: 'https://timeline-creator.netlify.app'
@@ -173,7 +142,6 @@ export const PROJECTS: Project[] = [
       'Integrated the Leaflet library to create an interactive map for visualizing IP locations.',
       'Implemented API calls to fetch real-time geolocation data based on user-inputted IP addresses.'
     ],
-    carouselImgs: ['carousel-1.webp', 'carousel-2.webp', 'carousel-3.webp'],
     mainTechnologies: [T.REACT, T.JAVASCRIPT, T.LEAFLET],
     code: 'https://github.com/K3vnDev/ip-geolocation',
     preview: 'https://ip-geolocation-kevdev.netlify.app',

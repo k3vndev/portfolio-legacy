@@ -15,8 +15,6 @@ const {
   mainTechnologies: technologies,
   code,
   preview,
-  gridImgs,
-  carouselImgs,
 } = Astro.props as Props
 ---
 
@@ -60,5 +58,5 @@ const {
     <ProjectButtons {...{ code, preview, name }} />
   </div>
 
-  {gridImgs && carouselImgs && <Images {...{ name, gridImgs, carouselImgs }} />}
+  <Images name={name} />
 </article>
