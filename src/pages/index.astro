@@ -49,7 +49,7 @@ import { SECTIONS } from '@consts'
 
   <PageSection class='gap-6' id='about'>
     <Title {...SECTIONS.ABOUT} />
-    <div
+    <article
       class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl'
     >
       <p>
@@ -64,14 +64,14 @@ import { SECTIONS } from '@consts'
         >, I adapt quickly across the stack to deliver clean, reliable products
         and innovative solutions.
       </p>
-    </div>
+    </article>
   </PageSection>
 </Layout>
 
 <style is:global>
   @import 'tailwindcss';
 
-  #home h3 strong {
+  #home h2 strong {
     @apply bg-clip-text text-transparent font-extrabold bg-linear-to-r from-[#8e63f3] to-[#5d6bff];
   }
   #about p {

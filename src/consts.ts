@@ -73,6 +73,8 @@ export const TECHNOLOGIES = {
   - Python
   - Zod
   - Zustand
+  - TailwindCSS
+  - CSS3
   */
 }
 

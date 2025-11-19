@@ -45,6 +45,7 @@ const { pageTitle, pageDescription } = project
 
         {project.carouselImgs && (
           <ProjectImagesCarousel
+            projectSlug={projectSlug ?? ''}
             projectName={project.name}
             images={project.carouselImgs}
             client:load
@@ -58,7 +59,7 @@ const { pageTitle, pageDescription } = project
           split
         />
 
-        <ListSection title='My Work' list={project.myWork} icon={CodeIcon} />
+        <ListSection title='My Role' list={project.myRole} icon={CodeIcon} />
       </div>
     ) : (
       <h1 class='text-xl text-white mt-(--page-mt)'>Project not found</h1>

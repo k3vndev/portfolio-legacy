@@ -16,7 +16,7 @@ const spritesheets = {
   lick: '/cat/lick.gif'
 }
 
-const lickChance = 0.66
+const lickChance = 0.3
 
 export const Cat = () => {
   const [mode, setMode] = useState<Mode>('walk')

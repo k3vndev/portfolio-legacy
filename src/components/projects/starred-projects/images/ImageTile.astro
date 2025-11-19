@@ -1,4 +1,6 @@
 ---
+import { toKebabCase } from '@/utils/toKebabCase'
+
 interface Props {
   class?: string
   name: string
@@ -6,13 +8,14 @@ interface Props {
 }
 
 const { class: className, src, name } = Astro.props
+const imageSrc = `/projects/${toKebabCase(name)}/${src}`
 ---
 
 <div class=`overflow-hidden ${className}`>
   <img
     class='object-cover h-full w-full transition-transform duration-300 group-hover:scale-[1.025]'
-    src={src}
-    alt=`Screenshot of the project ${name}.`
+    src={imageSrc}
+    alt={`Screenshot of the project ${name}.`}
   />
 </div>
 

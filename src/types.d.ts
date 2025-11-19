@@ -10,14 +10,14 @@ export interface Project {
   overview: string
   description: string
   features: string[]
-  myWork: string[]
+  myRole: string[]
 
   gridImgs?: string[]
   carouselImgs?: string[]
 
   mainTechnologies: Tecnology[]
   extraTechnologies?: Tecnology[]
-  
+
   starred?: boolean
   code: string
   preview: string

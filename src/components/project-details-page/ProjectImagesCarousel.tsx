@@ -3,10 +3,11 @@ import { Carousel, CarouselItem, NavigationArrows } from '@k3vndev/react-carouse
 
 interface Props {
   projectName: string
+  projectSlug: string
   images: string[]
 }
 
-export const ProjectImagesCarousel = ({ projectName, images }: Props) => {
+export const ProjectImagesCarousel = ({ projectName, projectSlug, images }: Props) => {
   const { media } = useResponsiveness()
   const visibleItems = media.md ? 2 : 1
 
@@ -19,11 +20,12 @@ export const ProjectImagesCarousel = ({ projectName, images }: Props) => {
       navigationHandler={<NavigationArrows className={{ both: '[&.visible]:*:cursor-pointer' }} />}
     >
       {images.map((imgSrc, index) => (
-        <CarouselItem key={index} className='overflow-clip bg-transparent'>
+        <CarouselItem key={index} className='overflow-clip bg-white/5 h-82 flex text-white/50'>
           <img
             className='size-full object-cover'
-            src={imgSrc}
+            src={`/projects/${projectSlug}/${imgSrc}`}
             alt={`Showcase of the project ${projectName}`}
+            draggable={false}
           />
         </CarouselItem>
       ))}
