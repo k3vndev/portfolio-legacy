@@ -1,0 +1,58 @@
+---
+import { CodeIcon, HomeIcon, MailIcon } from '@icons'
+import { twMerge } from 'tailwind-merge'
+
+interface Props {
+  class?: string
+}
+
+interface NavbarItem {
+  label: string
+  path: string
+  icon: any
+}
+
+const items: NavbarItem[] = [
+  {
+    label: 'Home',
+    path: '/',
+    icon: HomeIcon,
+  },
+  {
+    label: 'Explore projects',
+    path: '/projects',
+    icon: CodeIcon,
+  },
+  {
+    label: 'Contact',
+    path: '/contact',
+    icon: MailIcon,
+  },
+]
+
+const pathName = Astro.originPathname
+const { class: className = '' } = Astro.props
+---
+
+{
+  items.map(({ label, icon: Icon, path }) => {
+    const comparePathName =
+      pathName === '/' ? pathName : pathName.replace(/\/$/, '')
+
+    const isSelected = comparePathName === path
+    const style = isSelected ? 'selected text-white pointer-events-none' : ''
+
+    return (
+      <a
+        href={path}
+        class={twMerge(`
+          sm:text-lg text-base font-semibold py-2 ${style}
+          button text-nowrap flex items-center gap-2 ${className}
+        `)}
+      >
+        {Icon && <Icon />}
+        <span>{label}</span>
+      </a>
+    )
+  })
+}

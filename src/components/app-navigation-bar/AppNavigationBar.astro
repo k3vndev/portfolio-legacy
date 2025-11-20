@@ -1,0 +1,121 @@
+---
+import { NAVBAR_TOP } from '@consts'
+import { MenuIcon } from '@icons'
+import NavigationItems from './NavigationItems.astro'
+---
+
+<nav
+  class={`
+    fixed left-1/2 -translate-x-1/2 flex bg-black/40
+    rounded-full backdrop-blur-md z-999 border border-zinc-700 text-gray-400 
+    sm:px-16 px-8 gap-12 [transition:top_400ms_ease] ${NAVBAR_TOP.VISIBLE}
+    sm:w-fit w-full max-w-page
+
+    [&>svg]:size-6 [&>svg]:min-w-6
+  `}
+  id='navbar'
+>
+  <NavigationItems class='not-[&.selected]:not-sm:hidden' />
+
+  {/* Open mobile navigation menu button */}
+  <button id='open-nav-menu-btn' class='sm:hidden ml-auto py-2 button'>
+    <MenuIcon />
+  </button>
+</nav>
+
+{/* Mobile navigation menu */}
+<nav
+  class=`
+    fixed w-screen h-dvh z-999 bg-black/66 backdrop-blur-sm text-white/50
+    flex flex-col items-center justify-center sm:hidden gap-8 *:text-2xl
+    transition-opacity duration-300
+  `
+  id='mobile-nav-menu'
+>
+  <NavigationItems class='[&.selected]:pointer-events-auto' />
+
+  {/* Close mobile navigation menu button */}
+  <div class=`absolute top-2 right-5 w-full max-w-page`>
+    <button
+      class='absolute top-8 right-8 text-white button text-3xl'
+      id='close-mobile-nav-menu-btn'
+    >
+      ✕
+    </button>
+  </div>
+</nav>
+
+<script>
+  import { NAVBAR_TOP } from '@consts'
+  // Handle mobile nav menu
+  const visibleClasses = ['opacity-100', 'pointer-events-auto']
+  const hiddenClasses = ['opacity-0', 'pointer-events-none']
+
+  // Get open/close buttons
+  const openNavMenuBtn = document.querySelector(
+    '#open-nav-menu-btn'
+  ) as HTMLButtonElement
+
+  const closeNavMenuBtn = document.querySelector(
+    '#close-mobile-nav-menu-btn'
+  ) as HTMLButtonElement
+
+  const mobileNavMenu = document.querySelector(
+    '#mobile-nav-menu'
+  ) as HTMLElement
+  mobileNavMenu.classList.add(...hiddenClasses)
+
+  // Listen to open button
+  openNavMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove(...hiddenClasses)
+    mobileNavMenu.classList.add(...visibleClasses)
+  })
+
+  // Listen to close button
+  closeNavMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove(...visibleClasses)
+    mobileNavMenu.classList.add(...hiddenClasses)
+  })
+
+  // Hide navbar when scrolling
+  const navbar = document.querySelector('#navbar') as HTMLElement
+
+  let timeout: ReturnType<typeof setTimeout> | null = null
+  let lastScroll = 0
+
+  const stopTimeout = () => {
+    timeout && clearTimeout(timeout)
+    timeout = null
+  }
+
+  const showNavbar = () => {
+    navbar.classList.remove(NAVBAR_TOP.HIDDEN)
+    navbar.classList.add(NAVBAR_TOP.VISIBLE)
+  }
+
+  const hideNavbar = () => {
+    navbar.classList.add(NAVBAR_TOP.HIDDEN)
+    navbar.classList.remove(NAVBAR_TOP.VISIBLE)
+  }
+
+  document.addEventListener('scroll', () => {
+    const { scrollY } = window
+    const movementY = scrollY - lastScroll
+    lastScroll = scrollY
+
+    stopTimeout()
+
+    if (movementY < 0) {
+      // Just show navbar
+      showNavbar()
+    } else {
+      // Hide navbar and show again after a certain time
+      hideNavbar()
+
+      timeout = setTimeout(() => {
+        showNavbar()
+        stopTimeout()
+      }, 250)
+    }
+  })
+</script>
