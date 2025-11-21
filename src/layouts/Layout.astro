@@ -3,15 +3,18 @@ import AppFooter from '@@/AppFooter.astro'
 import Background from '@@/Background.astro'
 import AppNavigationBar from '@@/app-navigation-bar/AppNavigationBar.astro'
 import '../../node_modules/@k3vndev/react-carousel/dist/index.css'
+import { twMerge } from 'tailwind-merge'
 
 interface Props {
   title: string
   description?: string
+  class?: string
 }
 
 const {
   title,
   description = 'Software developer focused on Web Development. Specialized on building enjoyable web experiences.',
+  class: className = '',
 } = Astro.props
 ---
 
@@ -25,7 +28,11 @@ const {
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class='bg-[#151515] overflow-x-hidden flex justify-center'>
+  <body
+    class={twMerge(
+      `bg-[#151515] overflow-x-hidden flex justify-center ${className}`
+    )}
+  >
     <AppNavigationBar />
 
     <main class='flex flex-col md:gap-52 gap-40 max-w-page w-full'>
