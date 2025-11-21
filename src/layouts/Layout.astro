@@ -1,9 +1,11 @@
 ---
 import AppFooter from '@@/AppFooter.astro'
-import Background from '@@/Background.astro'
 import AppNavigationBar from '@@/app-navigation-bar/AppNavigationBar.astro'
-import '../../node_modules/@k3vndev/react-carousel/dist/index.css'
+import Background from '@@/Background.astro'
 import { twMerge } from 'tailwind-merge'
+
+import '../../node_modules/@k3vndev/react-carousel/dist/index.css'
+import '../styles.css'
 
 interface Props {
   title: string
@@ -82,11 +84,11 @@ const {
   }
 
   @utility margin-top-page {
-    @apply xl:mt-[11rem] lg:mt-[9rem] md:mt-[8rem] mt-[7rem];
+    @apply xl:mt-44 lg:mt-36 md:mt-32 mt-28;
   }
 
   @utility max-w-page {
-    @apply xl:max-w-300 max-w-4xl sm:max-w-[calc(100%-4rem)] max-w-[calc(100%-2rem)];
+    @apply xl:max-w-300 lg:max-w-4xl sm:max-w-[calc(100%-4rem)] max-w-[calc(100%-2rem)];
   }
 
   html {
