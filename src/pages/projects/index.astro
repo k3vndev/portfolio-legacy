@@ -4,9 +4,10 @@ import PageSection from '@@/PageSection.astro'
 import Title from '@@/Title.astro'
 import { CodeIcon } from '@@/icons'
 import ExploreProjects from '@@/projects/explore-projects/ExploreProjects.astro'
+import { TITLE_ENDING } from '@consts'
 ---
 
-<Layout title="Explore Projects — Kevin's Portfolio">
+<Layout title={`Explore Projects${TITLE_ENDING}`}>
   <PageSection class='gap-12 pb-20'>
     <div class='flex flex-col gap-3 text-nowrap margin-top-page'>
       <Title label='Starred projects' icon={CodeIcon} />

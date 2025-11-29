@@ -1,5 +1,6 @@
 import * as Icons from '@icons'
-import type { Project } from '@types'
+
+export const EMAIL = 'kevinrpolo13@gmail.com'
 
 export const SOCIALS = [
   {
@@ -86,3 +87,5 @@ export const NAVBAR_TOP = {
   VISIBLE: 'top-4',
   HIDDEN: '-top-20'
 } as const
+
+export const TITLE_ENDING = " — Kevin's Portfolio"

@@ -17,7 +17,7 @@ import { SECTIONS } from '@consts'
       <span>I’m Kevin</span>
     </h1>
     <h2
-      class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4'
+      class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4 [&>strong]:text-strong-gradient'
     >
       <strong>Fullstack Developer</strong> with 2 years building responsive, fast,
       and maintainable
@@ -50,7 +50,7 @@ import { SECTIONS } from '@consts'
   <PageSection class='gap-6' id='about'>
     <Title {...SECTIONS.ABOUT} />
     <article
-      class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl'
+      class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl [&>strong]:text-light-gradient'
     >
       <p>
         I'm Kevin Rodriguez, a final-year engineering student and
@@ -67,19 +67,3 @@ import { SECTIONS } from '@consts'
     </article>
   </PageSection>
 </Layout>
-
-<style is:global>
-  @import 'tailwindcss';
-
-  #home h2 strong {
-    @apply bg-clip-text text-transparent font-extrabold bg-linear-to-r from-[#8e63f3] to-[#5d6bff];
-  }
-  #about p {
-    strong {
-      @apply bg-clip-text text-transparent bg-linear-to-l from-[#9998fd] to-[#b09eec] font-semibold;
-    }
-    a {
-      @apply text-white hover:underline;
-    }
-  }
-</style>
