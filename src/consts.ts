@@ -80,7 +80,7 @@ export const TECHNOLOGIES = {
 }
 
 export const EVENTS = {
-  OPEN_CONTACT: '$open-contact-form'
+  FORM_SUBMIT: '$form-submit'
 }
 
 export const NAVBAR_TOP = {

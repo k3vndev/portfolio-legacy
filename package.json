@@ -13,6 +13,7 @@
     "@astrojs/react": "^4.4.2",
     "@k3vndev/react-carousel": "^0.2.6-i",
     "@tailwindcss/vite": "^4.1.17",
+    "@types/nodemailer": "^7.0.4",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.0",

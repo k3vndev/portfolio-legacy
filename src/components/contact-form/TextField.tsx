@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react'
+import { EVENTS } from '@consts'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   label: string
@@ -6,7 +7,7 @@ interface Props {
   textarea?: boolean
 }
 
-export const ContactFormField = ({ label, name, textarea = false }: Props) => {
+export const TextField = ({ label, name, textarea = false }: Props) => {
   const [value, setValue] = useState('')
   const inputRef = useRef(null)
 
@@ -36,6 +37,12 @@ export const ContactFormField = ({ label, name, textarea = false }: Props) => {
     className:
       'px-3 py-1.5 outline-none bg-white/5 focus:bg-white/8 rounded-lg border border-white/25 focus:border-white/50 text-zinc-300'
   }
+
+  useEffect(() => {
+    const handleFormSubmit = () => setValue('')
+    document.addEventListener(EVENTS.FORM_SUBMIT, handleFormSubmit)
+    return () => document.removeEventListener(EVENTS.FORM_SUBMIT, handleFormSubmit)
+  }, [])
 
   return (
     <label className='flex flex-col gap-1.5 mb-8 w-full'>

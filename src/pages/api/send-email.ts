@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import nodemailer from 'nodemailer'
+import type Mail from 'nodemailer/lib/mailer'
 
 const { FROM_EMAIL, TO_EMAIL, EMAIL_PASSWORD } = import.meta.env
 
@@ -22,16 +23,17 @@ export const POST: APIRoute = async ({ request }) => {
     }
   })
 
-  const mailOptions = {
+  const mailOptions: Mail.Options = {
     from: FROM_EMAIL,
     to: TO_EMAIL,
-    subject: 'Email from Portfolio',
-    text: `
-      Name: ${name}
-      Email: ${email}
-
-      Message:
-      ${message}
+    subject: `Email from Portfolio — ${name}`,
+    html: `
+      <h1>${name} sent you a message!</h1>
+      <p style="padding: 10px; border: 1px solid black; border-radius: 5px; max-width: 600px;">
+        <strong>Message ✉️</strong><br>
+        ${message}
+      </p>
+      <small>Reply to: ${email}</small>
     `
   }
 
