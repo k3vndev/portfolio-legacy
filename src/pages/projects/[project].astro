@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 import { PROJECTS } from '@/lib/projects'
 import { getProjectImages } from '@/utils/getProjectImages'
 import { toKebabCase } from '@/utils/toKebabCase'
+import NotFoundScreen from '@@/NotFoundScreen.astro'
 import ListSection from '@@/project-details-page/ListSection.astro'
 import { ProjectImagesCarousel } from '@@/project-details-page/ProjectImagesCarousel'
 import ProjectButtons from '@@/projects/ProjectButtons.astro'
@@ -68,7 +69,10 @@ const { pageTitle, pageDescription } = project
         <ListSection title='My Role' list={project.myRole} icon={CodeIcon} />
       </div>
     ) : (
-      <h1 class='text-xl text-white mt-(--page-mt)'>Project not found</h1>
+      <NotFoundScreen
+        message='Oops... Looks like the project you are looking for does not exist.'
+        action={{ label: 'Back to projects', href: '/projects' }}
+      />
     )
   }
 </Layout>

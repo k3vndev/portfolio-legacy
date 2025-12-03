@@ -1,7 +1,7 @@
 ---
 import { Cat } from '@@/Cat'
-import Link from '@@/Link.astro'
 import { SOCIALS } from '@consts'
+import LinkButton from './LinkButton.astro'
 const slicedSocials = SOCIALS.slice(1)
 ---
 
@@ -16,9 +16,13 @@ const slicedSocials = SOCIALS.slice(1)
     <div class='flex gap-4'>
       {
         slicedSocials.map(({ label, icon: Icon, link }) => (
-          <Link name={label} href={link} class='border-none bg-transparent'>
+          <LinkButton
+            ariaLabel={label}
+            href={link}
+            class='border-none bg-transparent'
+          >
             <Icon className='md:size-8 size-6 text-white' />
-          </Link>
+          </LinkButton>
         ))
       }
     </div>
