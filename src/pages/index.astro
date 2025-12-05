@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { GradientButton } from '@@/GradientButton'
 import PageSection from '@@/PageSection.astro'
 import Socials from '@@/Socials.astro'
 import Title from '@@/Title.astro'
-import { ArrowDiagonalIcon } from '@@/icons'
+import { ArrowDiagonalIcon, MailIcon } from '@@/icons'
 import StarredProjects from '@@/projects/starred-projects/StarredProjects.astro'
 import { SECTIONS } from '@consts'
 ---
@@ -11,7 +12,7 @@ import { SECTIONS } from '@consts'
 <Layout title="Kevin's Portfolio — Fullstack Developer">
   <PageSection id='home' class='xl:mt-72 sm:mt-48 mt-40'>
     <h1
-      class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1'
+      class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1 font-poppins tracking-tight'
     >
       <span>Hi,</span>
       <span>I’m Kevin</span>
@@ -65,5 +66,9 @@ import { SECTIONS } from '@consts'
         and innovative solutions.
       </p>
     </article>
+    <GradientButton href='/contact' noBlankTarget>
+      <MailIcon />
+      Contact me
+    </GradientButton>
   </PageSection>
 </Layout>

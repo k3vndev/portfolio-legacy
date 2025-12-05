@@ -4,6 +4,7 @@
 /* Import TailwindCSS */
 @import 'tailwindcss';
 @source "../../node_modules/@k3vndev";
+@import '@k3vndev/tw-animations';
 
 body {
   font-family: var(--font-inter);

@@ -13,7 +13,7 @@ export const ContactForm = () => {
 
   const [visibleError, setVisibleError] = useState<VisibleError>({
     message: '',
-    isVisible: false
+    isVisible: false,
   })
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const ContactForm = () => {
     }
 
     if (!error && visibleError.message) {
-      setVisibleError(v => ({ ...v, isVisible: false }))
+      setVisibleError((v) => ({ ...v, isVisible: false }))
     }
   }, [error])
 
@@ -75,7 +75,8 @@ export const ContactForm = () => {
     sendMail(name.toString(), email.toString(), message.toString())
     setEmailWasSent(true)
 
-    emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
+    emailWasSentTimeoutRef.current &&
+      clearTimeout(emailWasSentTimeoutRef.current)
     emailWasSentTimeoutRef.current = setTimeout(() => {
       setEmailWasSent(false)
     }, 3000)
@@ -84,33 +85,49 @@ export const ContactForm = () => {
   useEffect(
     () => () => {
       // Cleanup timeouts on unmount
-      emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
+      emailWasSentTimeoutRef.current &&
+        clearTimeout(emailWasSentTimeoutRef.current)
       errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
     },
     []
   )
 
-  const errorVisibilityClass = visibleError.isVisible ? 'opacity-100' : 'opacity-0'
+  const errorVisibilityClass = visibleError.isVisible
+    ? 'opacity-100'
+    : 'opacity-0'
 
   return (
     <form
-      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl px-8 py-12 mb-24 max-w-3xl cursor-default'
+      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8'
       onSubmit={handleSubmit}
     >
-      <div className='flex gap-8'>
-        <TextField label='Name' name='name' />
-        <TextField label='Email' name='email' />
-      </div>
-      <TextField label='Message' name='message' textarea />
+      <div className='flex flex-col w-full px-8 py-12'>
+        <div className='flex gap-8'>
+          <TextField label='Name' name='name' />
+          <TextField label='Email' name='email' />
+        </div>
+        <TextField label='Message' name='message' textarea />
 
-      <div className='flex items-center gap-4'>
-        <SubmitButton emailWasSent={emailWasSent} />
+        <div className='flex items-center gap-4'>
+          <SubmitButton emailWasSent={emailWasSent} />
 
-        {/* Error handling */}
-        <span className={`transition-opacity duration-300 text-red-400/90 ${errorVisibilityClass}`}>
-          ✕ {visibleError.message}
-        </span>
+          {/* Error handling */}
+          <span
+            className={`transition-opacity duration-300 text-red-400/90 ${errorVisibilityClass}`}
+          >
+            ✕ {visibleError.message}
+          </span>
+        </div>
       </div>
+
+      <img
+        className='object-cover w-lg saturate-150 scale-150 hidden xl:block cursor-default -z-10'
+        src='/projects/pixi-paint/carousel-1.webp'
+        alt='Contact form image'
+        style={{
+          maskImage: 'linear-gradient(to left, white 0%, transparent 100%)',
+        }}
+      />
     </form>
   )
 }
