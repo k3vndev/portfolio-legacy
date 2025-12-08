@@ -12,13 +12,13 @@ import { SECTIONS } from '@consts'
 <Layout title="Kevin's Portfolio — Fullstack Developer">
   <PageSection id='home' class='xl:mt-72 sm:mt-48 mt-40'>
     <h1
-      class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1 font-poppins tracking-tight'
+      class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1 font-poppins tracking-tight animate-appear'
     >
       <span>Hi,</span>
       <span>I’m Kevin</span>
     </h1>
     <h2
-      class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4 [&>strong]:text-strong-gradient'
+      class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4 [&>strong]:text-strong-gradient animate-appear anim-delay-150'
     >
       <strong>Fullstack Developer</strong> with 2 years building responsive, fast,
       and maintainable
@@ -38,6 +38,7 @@ import { SECTIONS } from '@consts'
         <a
           class='flex items-center gap-1 text-white font-normal hover:underline'
           href='/projects'
+          style='display: ;'
         >
           explore all my projects
           <ArrowDiagonalIcon className='size-4 stroke-[3px]' />

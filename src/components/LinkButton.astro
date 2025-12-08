@@ -4,9 +4,10 @@ interface Props {
   ariaLabel: string
   class?: string
   noBlankTarget?: boolean
+  style?: string
 }
 
-const { href, ariaLabel, noBlankTarget } = Astro.props
+const { href, ariaLabel, noBlankTarget, style } = Astro.props
 const propClass = Astro.props.class ?? ''
 
 const props = noBlankTarget
@@ -22,6 +23,7 @@ const props = noBlankTarget
     transition hover:brightness-150 active:scale-95 active:brightness-90
     ${propClass}
   `}
+  style={style}
   {...props}
 >
   <slot />

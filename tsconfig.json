@@ -12,6 +12,7 @@
       "@icons": ["src/components/icons.tsx"],
       "@types": ["src/types.d.ts"],
       "@consts": ["src/consts.ts"],
+      "@utils": ["src/utils/index.ts"],
       "@/*": ["src/*"]
     }
   }

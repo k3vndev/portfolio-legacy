@@ -35,15 +35,15 @@ export const GradientButton = ({
           href={href}
           className='size-full absolute z-10 left-0 top-0 rounded-full'
           {...linkProps}
-        ></a>
+        />
       )}
 
-      <div className='bg-black/90 flex gap-2 items-center px-12 py-3 rounded-full'>
+      <div className='bg-black/85 flex gap-2 items-center px-12 py-3 rounded-full'>
         {children}
       </div>
 
       {/* Gradient */}
-      <div className='opacity-55 group-hover:opacity-100 transition bg-linear-to-r from-[#8e63f3] to-[#5d6bff] aspect-square w-[150%] absolute top-1/2 left-1/2 -translate-1/2 -z-10 animate-spin' />
+      <div className='opacity-60 group-hover:opacity-100 transition bg-linear-to-r from-[#aa0bff] to-[#549eff] aspect-square w-[150%] absolute top-1/2 left-1/2 -translate-1/2 -z-10 animate-spin' />
     </button>
   )
 }

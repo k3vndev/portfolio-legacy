@@ -27,6 +27,10 @@ html {
     sans-serif;
 }
 
+.set-anim-delay {
+  animation-delay: calc(var(--set-anim-delay-index) * 1ms);
+}
+
 @utility project-card {
   background-color: rgba(255, 255, 255, 0.045);
   border-color: rgba(85, 85, 85, 0.5);
@@ -53,4 +57,8 @@ html {
 }
 @utility text-light-gradient {
   @apply bg-clip-text text-transparent bg-linear-to-l from-[#9998fd] to-[#b09eec] font-semibold;
+}
+
+@utility animate-appear {
+  @apply animate-slide-in-b anim-blur-sm anim-opacity-0 anim-ease-out-back;
 }

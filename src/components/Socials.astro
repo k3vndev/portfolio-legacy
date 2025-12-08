@@ -1,21 +1,33 @@
 ---
 import { SOCIALS } from '@consts'
+import { getAnimationDelayStyle } from '@utils'
 import LinkButton from './LinkButton.astro'
 ---
 
 <div class='flex flex-wrap gap-2 md:gap-3 mt-7 md:mt-4'>
   {
-    SOCIALS.map(({ label, link, icon: Icon }, i) => (
-      <LinkButton
-        ariaLabel={label}
-        href={link}
-        class='gap-2 sm:px-6 px-5 py-1.5 rounded-full'
-      >
-        <Icon className='size-6' />
-        <span class={`text-xl font-semibold ${i ? 'hidden md:block' : ''}`}>
-          {label}
-        </span>
-      </LinkButton>
-    ))
+    SOCIALS.map(({ label, link, icon: Icon }, i) => {
+      const style = getAnimationDelayStyle({
+        index: i,
+        base: 300,
+        step: 100,
+      })
+
+      console.log(style)
+
+      return (
+        <LinkButton
+          ariaLabel={label}
+          href={link}
+          class='gap-2 sm:px-6 px-5 py-1.5 rounded-full animate-fade-in anim-scale-50 anim-blur-md anim-ease-out-back'
+          style={style}
+        >
+          <Icon className='size-6' />
+          <span class={`text-xl font-semibold ${i ? 'hidden md:block' : ''}`}>
+            {label}
+          </span>
+        </LinkButton>
+      )
+    })
   }
 </div>

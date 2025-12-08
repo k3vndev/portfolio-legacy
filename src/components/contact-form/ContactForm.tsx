@@ -98,7 +98,7 @@ export const ContactForm = () => {
 
   return (
     <form
-      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8'
+      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-400'
       onSubmit={handleSubmit}
     >
       <div className='flex flex-col w-full px-8 py-12'>
@@ -123,7 +123,7 @@ export const ContactForm = () => {
       <img
         className='object-cover w-lg saturate-150 scale-150 hidden xl:block cursor-default -z-10'
         src='/projects/pixi-paint/carousel-1.webp'
-        alt='Contact form image'
+        alt='Contact form decoration'
         style={{
           maskImage: 'linear-gradient(to left, white 0%, transparent 100%)',
         }}
