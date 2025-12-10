@@ -3,11 +3,20 @@ import { PROJECTS } from '@/lib/projects'
 import type { Project } from '@types'
 import ProjectsColumn from './ProjectsColumn.astro'
 
+export interface ExploreProject extends Project {
+  index: number
+}
+
 // Distribute projects into two columns for layout purposes
-const projectColumns: Project[][] = [[], []]
+const projectColumns: ExploreProject[][] = [[], []]
+const singleProjectColumn: ExploreProject[] = []
+
 for (let i = 0; i < PROJECTS.length; i++) {
+  const project = { ...PROJECTS[i], index: i }
   const columnIndex = i % 2
-  projectColumns[columnIndex].push(PROJECTS[i])
+
+  projectColumns[columnIndex].push(project)
+  singleProjectColumn.push(project)
 }
 ---
 
@@ -16,4 +25,4 @@ for (let i = 0; i < PROJECTS.length; i++) {
   <ProjectsColumn projects={projectColumns[1]} class='translate-y-32' />
 </div>
 
-<ProjectsColumn projects={PROJECTS} class='md:hidden' />
+<ProjectsColumn projects={singleProjectColumn} class='md:hidden' />

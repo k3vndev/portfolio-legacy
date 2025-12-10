@@ -1,4 +1,5 @@
 ---
+import { PROJECT_APPEAR_SPEED } from '@consts'
 import type { Project } from '@types'
 import ProjectButtons from '../ProjectButtons.astro'
 import ProjectHyperlink from '../ProjectHyperlink.astro'
@@ -15,7 +16,10 @@ const {
   mainTechnologies: technologies,
   code,
   preview,
+  index,
 } = Astro.props as Props
+
+const scrollFade = 2 + index * PROJECT_APPEAR_SPEED
 ---
 
 <article
@@ -27,11 +31,13 @@ const {
     xl:rounded-xl rounded-2xl md:p-3 md:gap-8 gap-4 hover:brightness-110 group
     xl:flex-row xl:p-12 xl:min-h-77.5 xl:gap-0
     project-card not-md:bg-transparent not-md:border-transparent
+    opacity-0
 
     nth-1:col-span-2 nth-2:col-span-2
     nth-1:xl:order-1 nth-2:xl:order-4
     nth-3:xl:order-2 nth-4:xl:order-3
   `
+  scroll-fade={scrollFade}
 >
   <ProjectHyperlink projectName={name} />
 

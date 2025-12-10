@@ -38,17 +38,28 @@ const { pageTitle, pageDescription } = project
   {
     project ? (
       <div class='margin-top-page flex flex-col gap-4'>
-        <h1 class='text-white text-5xl font-bold'>{project.name}</h1>
-        <p class='text-white/90 text-lg xl:w-4/5 text-pretty mb-4'>
+        <h1 class='text-white text-5xl font-bold opacity-0' scroll-fade={1}>
+          {project.name}
+        </h1>
+        <p
+          class='text-white/90 text-lg xl:w-4/5 text-pretty mb-4 opacity-0'
+          scroll-fade={1.5}
+        >
           {project.description}
         </p>
 
-        <Technologies technologies={technologies} class='flex-wrap' />
+        <Technologies
+          technologies={technologies}
+          class='flex-wrap opacity-0'
+          scroll-fade={4}
+        />
 
         <ProjectButtons
           name={project.name}
           code={project.code}
           preview={project.preview}
+          class='opacity-0'
+          scroll-fade={3}
         />
 
         {carouselImgs && (

@@ -1,6 +1,11 @@
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface Props {
+interface Props
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   className?: string
   children: React.ReactNode
   onClick?: () => void
@@ -12,12 +17,11 @@ interface Props {
 export const GradientButton = ({
   className = '',
   children,
-  onClick,
   href,
   noBlankTarget = false,
-  disabled,
+  ...props
 }: Props) => {
-  const pointerEvents = disabled ? 'pointer-events-none' : ''
+  const pointerEvents = props.disabled ? 'pointer-events-none' : ''
   const linkProps = noBlankTarget
     ? {}
     : { target: '_blank', rel: 'noopener noreferrer' }
@@ -28,7 +32,7 @@ export const GradientButton = ({
         text-white font-semibold text-lg self-start bg-text-gradient p-[3px] rounded-full button transition
          overflow-clip relative group ${pointerEvents} ${className}
       `)}
-      {...{ onClick, disabled }}
+      {...props}
     >
       {href && (
         <a
@@ -43,7 +47,7 @@ export const GradientButton = ({
       </div>
 
       {/* Gradient */}
-      <div className='opacity-60 group-hover:opacity-100 transition bg-linear-to-r from-[#aa0bff] to-[#549eff] aspect-square w-[150%] absolute top-1/2 left-1/2 -translate-1/2 -z-10 animate-spin' />
+      <div className='opacity-75 group-hover:opacity-100 transition bg-linear-to-r from-[#aa0bff] to-[#549eff] aspect-square w-[150%] absolute top-1/2 left-1/2 -translate-1/2 -z-10 animate-spin' />
     </button>
   )
 }

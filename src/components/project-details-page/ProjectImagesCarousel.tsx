@@ -1,5 +1,9 @@
 import { useResponsiveness } from '@/hooks/useResponsiveness'
-import { Carousel, CarouselItem, NavigationArrows } from '@k3vndev/react-carousel'
+import {
+  Carousel,
+  CarouselItem,
+  NavigationArrows,
+} from '@k3vndev/react-carousel'
 
 interface Props {
   projectName: string
@@ -12,16 +16,26 @@ export const ProjectImagesCarousel = ({ projectName, images }: Props) => {
 
   return (
     <Carousel
-      className={{ wrapper: 'max-w-full mt-5' }}
+      className={{
+        wrapper:
+          'max-w-full mt-5 animate-fade-in anim-delay-300 anim-scale-90 anim-ease-out-back',
+      }}
       itemsCount={images.length}
       gap={16}
       visibleItems={visibleItems}
-      navigationHandler={<NavigationArrows className={{ both: '[&.visible]:*:cursor-pointer' }} />}
+      navigationHandler={
+        <NavigationArrows
+          className={{ both: '[&.visible]:*:cursor-pointer' }}
+        />
+      }
     >
       {images.map((imgSrc, index) => (
-        <CarouselItem key={index} className='overflow-clip bg-white/5 h-82 flex text-white/50'>
+        <CarouselItem
+          key={index}
+          className='overflow-clip bg-white/5 flex text-white/50'
+        >
           <img
-            className='size-full object-cover'
+            className='size-full object-cover aspect-5/3'
             src={imgSrc}
             alt={`Showcase of the project ${projectName}`}
             draggable={false}

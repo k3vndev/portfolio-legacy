@@ -2,8 +2,8 @@
 import Layout from '@/layouts/Layout.astro'
 import { GradientButton } from '@@/GradientButton'
 import PageSection from '@@/PageSection.astro'
+import SectionTitle from '@@/SectionTitle.astro'
 import Socials from '@@/Socials.astro'
-import Title from '@@/Title.astro'
 import { ArrowDiagonalIcon, MailIcon } from '@@/icons'
 import StarredProjects from '@@/projects/starred-projects/StarredProjects.astro'
 import { SECTIONS } from '@consts'
@@ -30,15 +30,15 @@ import { SECTIONS } from '@consts'
 
   <PageSection class='gap-8' id='projects'>
     <div class='flex flex-col gap-3 text-nowrap'>
-      <Title {...SECTIONS.PROJECTS} />
+      <SectionTitle {...SECTIONS.PROJECTS} />
       <span
-        class='text-white/75 font-light text-lg flex items-center gap-1.5 flex-wrap'
+        class='text-white/75 font-light text-lg flex items-center gap-1.5 flex-wrap opacity-0'
+        scroll-fade={2}
       >
         Click on a project to know more or
         <a
           class='flex items-center gap-1 text-white font-normal hover:underline'
           href='/projects'
-          style='display: ;'
         >
           explore all my projects
           <ArrowDiagonalIcon className='size-4 stroke-[3px]' />
@@ -50,16 +50,16 @@ import { SECTIONS } from '@consts'
   </PageSection>
 
   <PageSection class='gap-6' id='about'>
-    <Title {...SECTIONS.ABOUT} />
+    <SectionTitle {...SECTIONS.ABOUT} />
     <article
       class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl [&>strong]:text-light-gradient'
     >
-      <p>
+      <p scroll-fade={2}>
         I'm Kevin Rodriguez, a final-year engineering student and
         <strong>Fullstack Developer</strong> with 2 years of experience shipping
         projects from concept to production.
       </p>
-      <p>
+      <p scroll-fade={2.5}>
         I specialize in building responsive, fast, and scalable web applications
         that people <strong>enjoy</strong> using. Known for strong
         <strong>attention to detail</strong> and <strong>problem-solving</strong
@@ -67,7 +67,7 @@ import { SECTIONS } from '@consts'
         and innovative solutions.
       </p>
     </article>
-    <GradientButton href='/contact' noBlankTarget>
+    <GradientButton href='/contact' noBlankTarget scroll-fade={3.5}>
       <MailIcon />
       Contact me
     </GradientButton>

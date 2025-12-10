@@ -45,3 +45,52 @@ const {
     <Background />
   </body>
 </html>
+
+<script>
+  /*
+    Scroll fade elements.
+    Note: Every element should initially have 'opacity-0' class for a better effect.
+  */
+
+  const SCROLL_FADE_PROP = 'scroll-fade'
+  const ANIMATION_CLASSES = ['animate-appear', 'anim-fill-both', 'opacity-100']
+  const OPACITY_ZERO_CLASS = 'opacity-0'
+  const MIN_INSTANT_TIME = 900
+
+  const DELAY = { SHORT: 50, LONG: 100 }
+
+  const elements = document.querySelectorAll(`[${SCROLL_FADE_PROP}]`)
+
+  const handleElement = (element: HTMLElement, delayFactor: number) => {
+    const delayValue = element.getAttribute(SCROLL_FADE_PROP)
+
+    const observer = new IntersectionObserver(
+      ([{ time, isIntersecting }]) => {
+        if (!isIntersecting || !('style' in element)) return
+
+        const delayTime = time < MIN_INSTANT_TIME ? DELAY.LONG : DELAY.SHORT
+        element.style.animationDelay = `${delayTime * delayFactor}ms`
+        console.log(`${delayTime * delayFactor}ms`)
+
+        // Skip delays
+        element.classList.remove(OPACITY_ZERO_CLASS)
+        element.classList.add(...ANIMATION_CLASSES)
+
+        observer.disconnect()
+      },
+      { rootMargin: '100px' }
+    )
+    observer.observe(element)
+  }
+
+  for (const element of elements) {
+    // Get delay factor
+    const delayFactor = element.getAttribute(SCROLL_FADE_PROP)
+    if (!delayFactor || Number.isNaN(+delayFactor - 1)) {
+      console.error('Invalid value given at', element)
+      break
+    }
+
+    handleElement(element as HTMLElement, +delayFactor)
+  }
+</script>

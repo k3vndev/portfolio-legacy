@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import PageSection from '@@/PageSection.astro'
-import Title from '@@/Title.astro'
+import SectionTitle from '@@/SectionTitle.astro'
 import { CodeIcon } from '@@/icons'
 import ExploreProjects from '@@/projects/explore-projects/ExploreProjects.astro'
 import { TITLE_ENDING } from '@consts'
@@ -10,9 +10,10 @@ import { TITLE_ENDING } from '@consts'
 <Layout title={`Explore Projects${TITLE_ENDING}`}>
   <PageSection class='gap-12 pb-20'>
     <div class='flex flex-col gap-3 text-nowrap margin-top-page'>
-      <Title label='Starred projects' icon={CodeIcon} />
+      <SectionTitle label='Starred projects' icon={CodeIcon} />
       <span
-        class='text-white/75 font-light text-lg flex items-center gap-1.5 flex-wrap'
+        class='text-white/75 font-light text-lg flex items-center gap-1.5 flex-wrap opacity-0'
+        scroll-fade={1.5}
       >
         Click on a project to know more.
       </span>

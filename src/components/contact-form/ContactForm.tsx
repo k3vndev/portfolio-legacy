@@ -98,7 +98,7 @@ export const ContactForm = () => {
 
   return (
     <form
-      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-400'
+      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-300'
       onSubmit={handleSubmit}
     >
       <div className='flex flex-col w-full px-8 py-12'>

@@ -1,20 +1,23 @@
 ---
 import { getProjectImages } from '@/utils/getProjectImages'
-import type { Project } from '@types'
+import { PROJECT_APPEAR_SPEED } from '@consts'
 import ProjectButtons from '../ProjectButtons.astro'
 import ProjectHyperlink from '../ProjectHyperlink.astro'
 import Technologies from '../Technologies.astro'
+import type { ExploreProject } from './ExploreProjects.astro'
 
-interface Props extends Project {}
-const { name, overview, mainTechnologies, code, preview } = Astro.props
+interface Props extends ExploreProject {}
+const { name, overview, mainTechnologies, code, preview, index } = Astro.props
 
 // Fetch the first image for the project tile
 const carouselImgs = await getProjectImages(name, 'carousel')
 const [imageSrc] = carouselImgs
+const scrollFade = 2 + index * PROJECT_APPEAR_SPEED
 ---
 
 <article
-  class='flex flex-col project-card rounded-xl overflow-clip relative group'
+  class='flex flex-col project-card rounded-xl overflow-clip relative group opacity-0'
+  scroll-fade={scrollFade}
 >
   <ProjectHyperlink projectName={name} />
 

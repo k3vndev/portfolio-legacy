@@ -3,7 +3,7 @@
 
 /* Import TailwindCSS */
 @import 'tailwindcss';
-@source "../../node_modules/@k3vndev";
+@source "../node_modules/@k3vndev/react-carousel";
 @import '@k3vndev/tw-animations';
 
 body {
