@@ -36,7 +36,6 @@ export const ContactForm = () => {
   }
 
   const displayError = (err: string) => {
-    console.log('Displaying error', err)
     setError(err)
 
     errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
@@ -98,17 +97,17 @@ export const ContactForm = () => {
 
   return (
     <form
-      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-300'
+      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-300 relative'
       onSubmit={handleSubmit}
     >
-      <div className='flex flex-col w-full px-8 py-12'>
-        <div className='flex gap-8'>
+      <div className='flex flex-col xl:max-w-2xl w-full px-8 py-8'>
+        <div className='flex not-sm:flex-col gap-x-8'>
           <TextField label='Name' name='name' />
           <TextField label='Email' name='email' />
         </div>
         <TextField label='Message' name='message' textarea />
 
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center gap-4 not-sm:flex-col-reverse'>
           <SubmitButton emailWasSent={emailWasSent} />
 
           {/* Error handling */}
@@ -121,7 +120,7 @@ export const ContactForm = () => {
       </div>
 
       <img
-        className='object-cover w-lg saturate-150 scale-150 hidden xl:block cursor-default -z-10'
+        className='object-cover absolute h-full right-0 w-lg scale-150 hidden xl:block cursor-default -z-10 animate-fade-in anim-opacity-100 anim-scale-160 anim-ease anim-blur-none [animation-direction:alternate] anim-infinite anim-duration-4000 blur-[2px]'
         src='/projects/pixi-paint/carousel-1.webp'
         alt='Contact form decoration'
         style={{

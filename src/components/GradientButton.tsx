@@ -29,7 +29,7 @@ export const GradientButton = ({
   return (
     <button
       className={twMerge(`
-        text-white font-semibold text-lg self-start bg-text-gradient p-[3px] rounded-full button transition
+        self-start bg-text-gradient p-[3px] rounded-full button transition
          overflow-clip relative group ${pointerEvents} ${className}
       `)}
       {...props}
@@ -42,7 +42,7 @@ export const GradientButton = ({
         />
       )}
 
-      <div className='bg-black/85 flex gap-2 items-center px-12 py-3 rounded-full'>
+      <div className='bg-black/85 flex gap-2 items-center px-12 py-3 rounded-full text-white font-semibold sm:text-lg text-base text-nowrap sm:[&>svg]:size-6 [&>svg]:size-5'>
         {children}
       </div>
 

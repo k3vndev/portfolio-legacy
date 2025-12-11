@@ -45,7 +45,7 @@ export const TextField = ({ label, name, textarea = false }: Props) => {
   }, [])
 
   return (
-    <label className='flex flex-col gap-1.5 mb-8 w-full'>
+    <label className='flex flex-col gap-1.5 sm:mb-8 mb-4 w-full'>
       <span className='text-white font-poppins text-lg flex items-center gap-0.5'>
         {label}
         <span className='font-semibold text-[#9998fd]'>*</span>

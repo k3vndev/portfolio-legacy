@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const SubmitButton = ({ emailWasSent }: Props) => (
-  <GradientButton disabled={emailWasSent}>
+  <GradientButton disabled={emailWasSent} className='not-sm:w-full not-sm:[&>div]:first:justify-center'>
     {emailWasSent ? (
       <>
         <CheckIcon />
