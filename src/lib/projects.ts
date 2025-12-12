@@ -30,18 +30,18 @@ export const PROJECTS: Project[] = [
       '🕹️ Mini-games — Enjoy fun pixel-art games like Speed Paint, all built into the platform.',
       '🕹 Handcrafted UI — Every detail custom‑made and lovingly inspired by the charm of the Wii interface.',
       '👩‍🎨 User friendly design — Intuitive and accessible for artists of all skill levels.',
-      '🚫 No login required — No barriers, no accounts. Just create and share instantly.'
+      '🚫 No login required — No barriers, no accounts. Just create and share instantly.',
     ],
     myRole: [
       'Designed and implemented the pixel-painting engine with custom tools, save/export features (PNG & JSON), and a gallery for publishing and exploring community art.',
       'Built a responsive, handcrafted UI with React, Tailwind, Zustand, and a MongoDB backend to handle storage and scalability.',
-      'Delivered an intuitive U X with attention to detail, applying design thinking, adaptability, and problem-solving, while driving the project independently from concept to launch.'
+      'Delivered an intuitive U X with attention to detail, applying design thinking, adaptability, and problem-solving, while driving the project independently from concept to launch.',
     ],
     mainTechnologies: [T.NEXTJS, T.MONGODB],
-    extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS],
+    extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS, T.TAILWIND, T.ZOD],
     code: 'https://github.com/K3vnDev/pixi-paint',
     preview: 'https://pixi-paint.vercel.app',
-    starred: true
+    starred: true,
   },
   {
     name: 'Studymate',
@@ -57,20 +57,21 @@ export const PROJECTS: Project[] = [
       '⏱️ Focus mode — a dedicated space to work on tasks with a built-in timer (in progress) and a swappable task card.',
       '🏅 Profile & achievements — view your info, streaks, completed plans, saved plans, and a growing list of badges (some still in development).',
       '💬 Local privacy logic — Studyplans start privately in your chat and only become publicly visible when you save or start them.',
-      '⚡ Smooth UX — animations, structured flows, clean layouts, and state management that keeps everything predictable.'
+      '⚡ Smooth UX — animations, structured flows, clean layouts, and state management that keeps everything predictable.',
     ],
     myRole: [
       'Designed and built the entire product end-to-end: UI/UX, Figma prototypes, frontend, backend, authentication, and deployment.',
       'Implemented the AI engine using the OpenAI API to power Mate — generating Studyplans, giving guidance, and handling structured responses validated with Zod.',
       'Developed core functionality including progress tracking, chat history, autosync with Supabase, session logic, and Studyplan creation/management.',
       'Architected a scalable full-stack system with Next.js, TypeScript, Zustand, Supabase, Zod, and TailwindCSS, balancing reliability with ease of use.',
-      'Applied problem-solving, architectural planning, and self-driven iteration to deliver a stable, intuitive learning platform from scratch.'
+      'Applied problem-solving, architectural planning, and self-driven iteration to deliver a stable, intuitive learning platform from scratch.',
     ],
     mainTechnologies: [T.NEXTJS, T.SUPABASE, T.OPENAI],
-    extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS],
+    extraTechnologies: [T.TYPESCRIPT, T.REACT, T.NODEJS, T.TAILWIND, T.ZOD],
     code: 'https://github.com/K3vnDev/studymate',
-    preview: 'https://studymate-web.vercel.app/studyplan/9d1597b7-3d18-4135-b9a8-133cf38845dd',
-    starred: true
+    preview:
+      'https://studymate-web.vercel.app/studyplan/9d1597b7-3d18-4135-b9a8-133cf38845dd',
+    starred: true,
   },
   {
     name: 'Quizzie',
@@ -86,18 +87,19 @@ export const PROJECTS: Project[] = [
       '⭐ Scoring & rewards — 3-star scoring system; confetti for 2+ stars because we like cheap celebrations.',
       '🎛️ Customization — shuffle questions/answers, toggle icons, pick color themes, and preview before publishing.',
       '🔒 Optional accounts — create one to save multiple quizzes, otherwise keep it anonymous and friction-free.',
-      '⚡ Polished UI — smooth animations, responsive layout, and accessible controls for all players.'
+      '⚡ Polished UI — smooth animations, responsive layout, and accessible controls for all players.',
     ],
     myRole: [
       'Designed and built the quiz editor and playback engine, including live preview, per-question timers, shuffling, and the 3-star scoring logic with confetti trigger.',
       'Implemented local-first autosave (localStorage) with seamless cloud sync on login, plus public-permalink publishing and share/copy functionality.',
       'Developed the frontend with React, Zustand for state, and Vite for fast dev builds; paid close attention to animations and UX polish.',
-      'Built the backend API with Node.js + Express, validated inputs with Zod, and used MongoDB to store quizzes, public IDs, and ownership metadata.'
+      'Built the backend API with Node.js + Express, validated inputs with Zod, and used MongoDB to store quizzes, public IDs, and ownership metadata.',
     ],
     mainTechnologies: [T.REACT, T.NODEJS, T.MONGODB],
+    extraTechnologies: [T.JAVASCRIPT, T.CSS, T.EXPRESS, T.ZOD],
     code: 'https://github.com/K3vnDev/quizzie',
     preview: 'https://quizzie-wb.netlify.app',
-    starred: true
+    starred: true,
   },
   {
     name: 'Timeline Creator',
@@ -112,18 +114,19 @@ export const PROJECTS: Project[] = [
       '📁 Timeline manager — create, switch, clone, or delete timelines through a compact top-left menu.',
       '📤 Import/export — download your timeline as JSON and reload it later.',
       '🖱️ Simple controls — hover + click for points, Shift + click for marks; extremely lightweight workflow.',
-      '⚠️ Desktop-first — mobile support is limited (intentionally kept simple for now).'
+      '⚠️ Desktop-first — mobile support is limited (intentionally kept simple for now).',
     ],
     myRole: [
       'Built the full application solo, designing a minimal real-time editing system where the timeline view doubles as the editor.',
       'Implemented the data model for points, marks, timeline grouping, cloning, and import/export via JSON.',
       'Developed drag-and-drop image handling to seamlessly attach visuals to events or create new points.',
       'Created a clean, responsive UI with dynamic controls, hover detection, and an intuitive layout focused on speed and clarity.',
-      'Handled state management, timeline persistence, and all user interactions with a focus on simplicity and fluid UX.'
+      'Handled state management, timeline persistence, and all user interactions with a focus on simplicity and fluid UX.',
     ],
     mainTechnologies: [T.REACT, T.TYPESCRIPT],
+    extraTechnologies: [T.CSS, T.ZOD],
     code: 'https://github.com/K3vnDev/timeline-creator',
-    preview: 'https://timeline-creator.netlify.app'
+    preview: 'https://timeline-creator.netlify.app',
   },
   {
     name: 'IP Geolocation',
@@ -135,16 +138,17 @@ export const PROJECTS: Project[] = [
       '🌐 IP Lookup — Instantly find the location of any IP address worldwide.',
       '🗺️ Interactive Map — Visualize IP locations on a dynamic, zoomable map.',
       '📊 Visual Info — Get the country flag displayed next to the IP information.',
-      '⚡ Fast & Responsive — Enjoy quick lookups with a user-friendly interface.'
+      '⚡ Fast & Responsive — Enjoy quick lookups with a user-friendly interface.',
     ],
     myRole: [
       'Developed the entire frontend using React and JavaScript, ensuring a responsive and user-friendly interface.',
       'Integrated the Leaflet library to create an interactive map for visualizing IP locations.',
-      'Implemented API calls to fetch real-time geolocation data based on user-inputted IP addresses.'
+      'Implemented API calls to fetch real-time geolocation data based on user-inputted IP addresses.',
     ],
     mainTechnologies: [T.REACT, T.JAVASCRIPT, T.LEAFLET],
+    extraTechnologies: [T.CSS],
     code: 'https://github.com/K3vnDev/ip-geolocation',
     preview: 'https://ip-geolocation-kevdev.netlify.app',
-    starred: true
-  }
+    starred: true,
+  },
 ]

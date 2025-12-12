@@ -11,10 +11,6 @@ body {
   color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* Theme variables */
 @theme inline {
   --color-link-btn-bg: rgb(12, 12, 12);

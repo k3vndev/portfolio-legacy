@@ -5,9 +5,11 @@ import ProjectButtons from '../ProjectButtons.astro'
 import ProjectHyperlink from '../ProjectHyperlink.astro'
 import Technologies from '../Technologies.astro'
 import type { ExploreProject } from './ExploreProjects.astro'
+import StarredGradientStar from './StarredGradientStar.astro'
 
 interface Props extends ExploreProject {}
-const { name, overview, mainTechnologies, code, preview, index } = Astro.props
+const { name, overview, mainTechnologies, code, preview, index, starred } =
+  Astro.props
 
 // Fetch the first image for the project tile
 const carouselImgs = await getProjectImages(name, 'carousel')
@@ -36,6 +38,8 @@ const scrollFade = 2 + index * PROJECT_APPEAR_SPEED
 
     <ProjectButtons {...{ code, preview, name }} class='mt-4' />
   </div>
+
+  {starred && <StarredGradientStar index={index} />}
 </article>
 
 <style>

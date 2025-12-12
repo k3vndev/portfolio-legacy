@@ -68,15 +68,26 @@ export const TECHNOLOGIES = {
     label: 'OpenAI',
     icon: Icons.OpenAIIcon,
   },
-  /*
-  Add more technologies here
-  - Express.js
-  - Python
-  - Zod
-  - Zustand
-  - TailwindCSS
-  - CSS3
-  */
+  EXPRESS: {
+    label: 'Express.js',
+    icon: Icons.ExpressIcon,
+  },
+  PYTHON: {
+    label: 'Python',
+    icon: Icons.PythonIcon,
+  },
+  ZOD: {
+    label: 'Zod',
+    icon: Icons.ZodIcon,
+  },
+  TAILWIND: {
+    label: 'TailwindCSS',
+    icon: Icons.TailwindCSSIcon,
+  },
+  CSS: {
+    label: 'CSS',
+    icon: Icons.CSSIcon,
+  },
 }
 
 export const EVENTS = {

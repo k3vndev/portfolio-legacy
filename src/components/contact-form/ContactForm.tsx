@@ -13,7 +13,7 @@ export const ContactForm = () => {
 
   const [visibleError, setVisibleError] = useState<VisibleError>({
     message: '',
-    isVisible: false,
+    isVisible: false
   })
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const ContactForm = () => {
     }
 
     if (!error && visibleError.message) {
-      setVisibleError((v) => ({ ...v, isVisible: false }))
+      setVisibleError(v => ({ ...v, isVisible: false }))
     }
   }, [error])
 
@@ -74,8 +74,7 @@ export const ContactForm = () => {
     sendMail(name.toString(), email.toString(), message.toString())
     setEmailWasSent(true)
 
-    emailWasSentTimeoutRef.current &&
-      clearTimeout(emailWasSentTimeoutRef.current)
+    emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
     emailWasSentTimeoutRef.current = setTimeout(() => {
       setEmailWasSent(false)
     }, 3000)
@@ -84,16 +83,13 @@ export const ContactForm = () => {
   useEffect(
     () => () => {
       // Cleanup timeouts on unmount
-      emailWasSentTimeoutRef.current &&
-        clearTimeout(emailWasSentTimeoutRef.current)
+      emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
       errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
     },
     []
   )
 
-  const errorVisibilityClass = visibleError.isVisible
-    ? 'opacity-100'
-    : 'opacity-0'
+  const errorVisibilityClass = visibleError.isVisible ? 'opacity-100' : 'opacity-0'
 
   return (
     <form
@@ -120,11 +116,11 @@ export const ContactForm = () => {
       </div>
 
       <img
-        className='object-cover absolute h-full right-0 w-lg scale-150 hidden xl:block cursor-default -z-10 animate-fade-in anim-opacity-100 anim-scale-160 anim-ease anim-blur-none [animation-direction:alternate] anim-infinite anim-duration-4000 blur-[2px]'
+        className='object-cover absolute h-full right-0 w-lg scale-150 hidden xl:block cursor-default -z-10 animate-fade-in anim-opacity-100 anim-scale-160 anim-ease-in-out-cubic anim-blur-none [animation-direction:alternate] anim-infinite anim-duration-4000'
         src='/projects/pixi-paint/carousel-1.webp'
         alt='Contact form decoration'
         style={{
-          maskImage: 'linear-gradient(to left, white 0%, transparent 100%)',
+          maskImage: 'linear-gradient(to left, white 0%, transparent 100%)'
         }}
       />
     </form>
