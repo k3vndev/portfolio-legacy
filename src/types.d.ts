@@ -17,7 +17,7 @@ export interface Project {
 
   starred?: boolean
   code: string
-  preview: string
+  preview?: string
 }
 
 export type MailState = 'initial' | 'sending' | 'sent' | 'error'

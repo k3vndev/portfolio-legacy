@@ -1,14 +1,13 @@
 ---
-import { NAVBAR_TOP } from '@consts'
 import { MenuIcon } from '@icons'
 import NavigationItems from './NavigationItems.astro'
 ---
 
 <nav
   class={`
-    fixed flex bg-black/40
+    fixed flex bg-black/66
     rounded-full backdrop-blur-md z-999 border border-zinc-700 text-gray-400 
-    sm:px-16 px-8 gap-12 [transition:top_600ms_cubic-bezier(0.65,0,0.35,1)] ${NAVBAR_TOP.VISIBLE}
+    sm:px-16 px-8 gap-12 [transition:top_600ms_cubic-bezier(0.65,0,0.35,1)] top-4
     sm:w-fit w-full max-w-page
 
     [&>svg]:size-6 [&>svg]:min-w-6
@@ -48,7 +47,6 @@ import NavigationItems from './NavigationItems.astro'
 </nav>
 
 <script>
-  import { NAVBAR_TOP } from '@consts'
   // Handle mobile nav menu
   const visibleClasses = ['opacity-100', 'pointer-events-auto']
   const hiddenClasses = ['opacity-0', 'pointer-events-none']
@@ -77,47 +75,5 @@ import NavigationItems from './NavigationItems.astro'
   closeNavMenuBtn.addEventListener('click', () => {
     mobileNavMenu.classList.remove(...visibleClasses)
     mobileNavMenu.classList.add(...hiddenClasses)
-  })
-
-  // Hide navbar when scrolling
-  const navbar = document.querySelector('#navbar') as HTMLElement
-
-  let timeout: ReturnType<typeof setTimeout> | null = null
-  let lastScroll = 0
-
-  const stopTimeout = () => {
-    timeout && clearTimeout(timeout)
-    timeout = null
-  }
-
-  const showNavbar = () => {
-    navbar.classList.remove(NAVBAR_TOP.HIDDEN)
-    navbar.classList.add(NAVBAR_TOP.VISIBLE)
-  }
-
-  const hideNavbar = () => {
-    navbar.classList.add(NAVBAR_TOP.HIDDEN)
-    navbar.classList.remove(NAVBAR_TOP.VISIBLE)
-  }
-
-  document.addEventListener('scroll', () => {
-    const { scrollY } = window
-    const movementY = scrollY - lastScroll
-    lastScroll = scrollY
-
-    stopTimeout()
-
-    if (movementY < 0) {
-      // Just show navbar
-      showNavbar()
-    } else {
-      // Hide navbar and show again after a certain time
-      hideNavbar()
-
-      timeout = setTimeout(() => {
-        showNavbar()
-        stopTimeout()
-      }, 250)
-    }
   })
 </script>
