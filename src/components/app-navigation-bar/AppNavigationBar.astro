@@ -1,0 +1,79 @@
+---
+import { MenuIcon } from '@icons'
+import NavigationItems from './NavigationItems.astro'
+---
+
+<nav
+  class={`
+    fixed flex bg-black/66
+    rounded-full backdrop-blur-md z-999 border border-zinc-700 text-gray-400 
+    sm:px-16 px-8 gap-12 [transition:top_600ms_cubic-bezier(0.65,0,0.35,1)] top-4
+    sm:w-fit w-full max-w-page
+
+    [&>svg]:size-6 [&>svg]:min-w-6
+  `}
+  id='navbar'
+>
+  <NavigationItems class='not-[&.selected]:not-sm:hidden' />
+
+  {/* Open mobile navigation menu button */}
+  <button id='open-nav-menu-btn' class='sm:hidden ml-auto py-2 button'>
+    <MenuIcon />
+  </button>
+</nav>
+
+{/* Mobile navigation menu */}
+<nav
+  class=`
+    fixed w-screen h-dvh z-999 bg-black/66 backdrop-blur-sm text-white/50
+    flex flex-col items-center justify-center sm:hidden gap-8 *:text-2xl
+    transition-opacity duration-300
+    
+    opacity-0 pointer-events-none
+  `
+  id='mobile-nav-menu'
+>
+  <NavigationItems class='[&.selected]:pointer-events-auto' />
+
+  {/* Close mobile navigation menu button */}
+  <div class=`absolute top-2 right-5 w-full max-w-page`>
+    <button
+      class='absolute top-8 right-8 text-white button text-3xl'
+      id='close-mobile-nav-menu-btn'
+    >
+      ✕
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Handle mobile nav menu
+  const visibleClasses = ['opacity-100', 'pointer-events-auto']
+  const hiddenClasses = ['opacity-0', 'pointer-events-none']
+
+  // Get open/close buttons
+  const openNavMenuBtn = document.querySelector(
+    '#open-nav-menu-btn'
+  ) as HTMLButtonElement
+
+  const closeNavMenuBtn = document.querySelector(
+    '#close-mobile-nav-menu-btn'
+  ) as HTMLButtonElement
+
+  const mobileNavMenu = document.querySelector(
+    '#mobile-nav-menu'
+  ) as HTMLElement
+  mobileNavMenu.classList.add(...hiddenClasses)
+
+  // Listen to open button
+  openNavMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove(...hiddenClasses)
+    mobileNavMenu.classList.add(...visibleClasses)
+  })
+
+  // Listen to close button
+  closeNavMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove(...visibleClasses)
+    mobileNavMenu.classList.add(...hiddenClasses)
+  })
+</script>

@@ -7,12 +7,17 @@ export type Tecnology = {
 
 export interface Project {
   name: string
-  desc: string
-  big: boolean
-  gif: boolean
-  tecnologies: Tecnology[]
+  overview: string
+  description: string
+  features: string[]
+  myRole: string[]
+
+  mainTechnologies: Tecnology[]
+  extraTechnologies?: Tecnology[]
+
+  starred?: boolean
   code: string
-  preview: string
+  preview?: string
 }
 
 export type MailState = 'initial' | 'sending' | 'sent' | 'error'

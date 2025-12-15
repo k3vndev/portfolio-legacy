@@ -4,29 +4,28 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/netlify": "^5.5.4",
-    "@astrojs/react": "^3.6.2",
-    "@astrojs/tailwind": "^5.1.2",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "astro": "^4.16.2",
+    "@astrojs/netlify": "^6.6.2",
+    "@astrojs/react": "^4.4.2",
+    "@k3vndev/react-carousel": "^0.2.6-i",
+    "@k3vndev/tw-animations": "^0.3.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/nodemailer": "^7.0.4",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.0",
     "email-validator": "^2.0.4",
-    "nodemailer": "^6.9.15",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.3"
+    "nodemailer": "^7.0.10",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.3",
-    "@types/node": "^22.7.7",
-    "@types/nodemailer": "^6.4.16"
+    "@biomejs/biome": "^1.8.3"
   }
 }

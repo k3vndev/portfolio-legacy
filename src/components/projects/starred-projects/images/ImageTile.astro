@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string
+  name: string
+  src: string
+}
+
+const { class: className, src, name } = Astro.props
+---
+
+<div class=`overflow-hidden ${className}`>
+  <img
+    class='object-cover h-full w-full transition-transform duration-300 group-hover:scale-[1.025]'
+    src={src}
+    alt={`Screenshot of the project ${name}.`}
+  />
+</div>
+
+<style>
+  @import 'tailwindcss';
+
+  .default-image {
+    @apply absolute shadow-lg;
+  }
+  .aligned-rb {
+    @apply right-0 bottom-0 rounded-tl-xl border-t border-l border-[#333];
+  }
+</style>

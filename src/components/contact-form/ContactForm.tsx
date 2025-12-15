@@ -1,138 +1,133 @@
-import { EVENTS } from '@/consts'
-import { useErrorMessage } from '@/hooks/useErrorMessage'
-import type { MailState } from '@/types.d'
-import { extractFormData } from '@/utils/extractFormData'
-import { firstToUpper } from '@/utils/firstToUpper'
 import { sendMail } from '@/utils/sendMail'
-import { AnimatedToggable } from '@components/animated-toggable/AnimatedToggable'
-import * as EmailValidator from 'email-validator'
-import { useEffect, useState } from 'react'
-import { CheckIcon, CrossIcon, LoadingIcon, MailIcon } from '../icons'
-import { Input } from './Input'
+import { EVENTS } from '@consts'
+import { useEffect, useRef, useState } from 'react'
+import { SubmitButton } from './SubmitButton'
+import { TextField } from './TextField'
 
 export const ContactForm = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [mailState, setMailState] = useState<MailState>('initial')
-  const { isShowingError, setNewError, errorMessage, hideError } = useErrorMessage(4000)
+  const [emailWasSent, setEmailWasSent] = useState(false)
+  const emailWasSentTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const [error, setError] = useState<string | null>(null)
+  const errorTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const [visibleError, setVisibleError] = useState<VisibleError>({
+    message: '',
+    isVisible: false
+  })
 
   useEffect(() => {
-    document.addEventListener(EVENTS.OPEN_CONTACT, open)
-    return () => document.removeEventListener(EVENTS.OPEN_CONTACT, open)
-  }, [])
+    // Show or hide the error message based on the error state
+    // Visible error keeps the message even after error is cleared for animation purposes
 
-  const close = () => {
-    setIsOpen(false)
-    setMailState('initial')
-  }
-  const open = () => {
-    hideError()
-    setIsOpen(true)
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(e.target as HTMLFormElement)
-    e.preventDefault()
-
-    const [name, email, message] = extractFormData(formData, 'name', 'email', 'message')
-
-    const emptyParams = !(name && message && email)
-    if (emptyParams) return setNewError('There are empty fields.')
-
-    const invalidEmail = !EmailValidator.validate(email)
-    if (invalidEmail) return setNewError("That's not a valid email.")
-
-    setMailState('sending')
-    sendMail(name, email, message)
-      .then(() => setMailState('sent'))
-      .catch(() => setMailState('error'))
-  }
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation()
-    console.log('click')
-
-    if (!(e.target as HTMLElement).closest('form')) {
-      close()
+    if (error) {
+      setVisibleError({ message: error, isVisible: true })
+      return
     }
+
+    if (!error && visibleError.message) {
+      setVisibleError(v => ({ ...v, isVisible: false }))
+    }
+  }, [error])
+
+  const clearError = () => {
+    setError(null)
+    errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
   }
 
-  const icons = {
-    sending: <LoadingIcon className='animate-spin' />,
-    sent: <CheckIcon />,
-    error: <CrossIcon />
+  const displayError = (err: string) => {
+    setError(err)
+
+    errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
+    errorTimeoutRef.current = setTimeout(() => {
+      setError(null)
+    }, 5000)
   }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+
+    // Extract form values
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('message')
+
+    // Basic validations
+    if (!name || !email || !message) {
+      displayError('Some fields are missing.')
+      return
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email.toString())) {
+      displayError('The email address is invalid.')
+      return
+    }
+
+    // If all validations pass, clear any existing errors
+    clearError()
+
+    // Dispatch form submit event
+    document.dispatchEvent(
+      new CustomEvent(EVENTS.FORM_SUBMIT, { detail: { name, email, message } })
+    )
+    sendMail(name.toString(), email.toString(), message.toString())
+    setEmailWasSent(true)
+
+    emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
+    emailWasSentTimeoutRef.current = setTimeout(() => {
+      setEmailWasSent(false)
+    }, 3000)
+  }
+
+  useEffect(
+    () => () => {
+      // Cleanup timeouts on unmount
+      emailWasSentTimeoutRef.current && clearTimeout(emailWasSentTimeoutRef.current)
+      errorTimeoutRef.current && clearTimeout(errorTimeoutRef.current)
+    },
+    []
+  )
+
+  const errorVisibilityClass = visibleError.isVisible ? 'opacity-100' : 'opacity-0'
 
   return (
-    <>
-      {/* Dialog menu */}
-      <AnimatedToggable
-        animation='pop'
-        refresh={[isShowingError, errorMessage, mailState]}
-        toggle={isOpen}
-      >
-        <form
-          className={`
-            fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-top-left z-[99999]
-            flex-col items-center md:gap-y-5 gap-y-4 bg-zinc-950/75 border-2
-            border-zinc-800 rounded-xl p-9 pb-4 shadow-xl
-            md:w-auto w-[calc(100vw-20px)] max-w-[32rem] backdrop-blur-xl
-          `}
-          onSubmit={handleSubmit}
-        >
-          <header className='text-white flex gap-2 items-center mb-2'>
-            <MailIcon className='sm:size-7 size-6' />
-            <span className='sm:text-2xl text-xl font-semibold'>Contact</span>
-          </header>
+    <form
+      className='project-card hover:border-[rgba(85,85,85,0.5)] rounded-xl mb-24 w-full cursor-default flex overflow-clip gap-8 animate-appear anim-delay-300 relative'
+      onSubmit={handleSubmit}
+    >
+      <div className='flex flex-col xl:max-w-2xl w-full px-8 py-8'>
+        <div className='flex not-sm:flex-col gap-x-8'>
+          <TextField label='Name' name='name' />
+          <TextField label='Email' name='email' />
+        </div>
+        <TextField label='Message' name='message' textarea />
 
-          <div className='flex md:flex-row md:justify-between flex-col gap-x-7 md:gap-y-5 gap-y-4 max-w-full w-full'>
-            <Input name='name' mailState={mailState} />
-            <Input name='email' mailState={mailState} />
-          </div>
-          <Input name='message' textarea mailState={mailState} />
+        <div className='flex items-center gap-4 not-sm:flex-col-reverse'>
+          <SubmitButton emailWasSent={emailWasSent} />
 
-          <button
-            className={`
-              bg-black px-20 py-2 rounded-lg hover:brightness-150 active:scale-95
-              active:brightness-90 disabled:brightness-50 disabled:scale-100 
-              transition mt-1 flex gap-2 items-center text-white
-              border border-zinc-800
-              `}
-            disabled={mailState === 'sending'}
+          {/* Error handling */}
+          <span
+            className={`transition-opacity duration-300 text-red-400/90 ${errorVisibilityClass}`}
           >
-            <span className='text-xl *:size-8'>
-              {mailState === 'initial' ? 'Send' : firstToUpper(mailState)}
-            </span>
-            {mailState !== 'initial' && icons[mailState]}
-          </button>
+            ✕ {visibleError.message}
+          </span>
+        </div>
+      </div>
 
-          {/* Error message */}
-          <AnimatedToggable animation='fade' toggle={isShowingError} refresh={[errorMessage]}>
-            <span
-              className={`
-                absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-11 
-                text-red-400 text-lg [text-shadow:0_0_3rem_black]
-              `}
-            >
-              {errorMessage}
-            </span>
-          </AnimatedToggable>
-        </form>
-      </AnimatedToggable>
-
-      {/* Black background */}
-      <AnimatedToggable
-        animation='fade'
-        refresh={[isShowingError, errorMessage, mailState]}
-        toggle={isOpen}
-      >
-        <div
-          onPointerDown={handleClick}
-          className={`
-            fixed z-[9999] top-0 left-0
-            h-dvh w-screen bg-black/35 backdrop-blur-sm
-          `}
-        />
-      </AnimatedToggable>
-    </>
+      <img
+        className='object-cover absolute h-full right-0 w-lg scale-150 hidden xl:block cursor-default -z-10 animate-fade-in anim-opacity-100 anim-scale-160 anim-ease-in-out-cubic anim-blur-none [animation-direction:alternate] anim-infinite anim-duration-4000'
+        src='/projects/pixi-paint/carousel-1.webp'
+        alt='Contact form decoration'
+        style={{
+          maskImage: 'linear-gradient(to left, white 0%, transparent 100%)'
+        }}
+      />
+    </form>
   )
+}
+
+interface VisibleError {
+  message: string
+  isVisible: boolean
 }

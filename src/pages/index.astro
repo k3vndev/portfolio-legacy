@@ -1,106 +1,75 @@
 ---
-import { PROJECTS, SECTIONS } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
-import Footer from '@components/Footer.astro'
-import Navbar from '@components/Navbar.astro'
-import Section from '@components/Section.astro'
-import Socials from '@components/Socials.astro'
-import Title from '@components/Title.astro'
-import { ContactForm } from '@components/contact-form/ContactForm'
-import Project from '@components/project/Project.astro'
+import { GradientButton } from '@@/GradientButton'
+import PageSection from '@@/PageSection.astro'
+import SectionTitle from '@@/SectionTitle.astro'
+import Socials from '@@/Socials.astro'
+import { ArrowDiagonalIcon, MailIcon } from '@@/icons'
+import StarredProjects from '@@/projects/starred-projects/StarredProjects.astro'
+import { SECTIONS } from '@consts'
 ---
 
-<Layout title="Kevin's Portfolio | Fullstack Developer">
-  <main
-    class='flex flex-col md:gap-52 gap-40 xl:max-w-[75rem] max-w-4xl w-full sm:mx-10 mx-7 xl:mt-72 sm:mt-48 mt-40'
-  >
-    <Navbar />
+<Layout title="Kevin's Portfolio — Fullstack Developer">
+  <PageSection id='home' class='xl:mt-72 sm:mt-48 mt-40'>
+    <h1
+      class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1 font-poppins tracking-tight animate-appear'
+    >
+      <span>Hi,</span>
+      <span>I’m Kevin</span>
+    </h1>
+    <h2
+      class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4 [&>strong]:text-strong-gradient animate-appear anim-delay-150'
+    >
+      <strong>Fullstack Developer</strong> with 2 years building responsive, fast,
+      and maintainable
+      <strong>Web Applications</strong>.
+    </h2>
 
-    <Section id='home'>
-      <h2
-        class='text-white text-6xl md:text-8xl sm:text-7xl font-bold text-nowrap flex flex-wrap gap-3 sm:mb-0 mb-1'
+    <Socials />
+  </PageSection>
+
+  <PageSection class='gap-8' id='projects'>
+    <div class='flex flex-col gap-3 text-nowrap'>
+      <SectionTitle {...SECTIONS.PROJECTS} />
+      <span
+        class='text-white/75 font-light text-lg flex items-center gap-1.5 flex-wrap opacity-0'
+        scroll-fade={2}
       >
-        <span>Hi,</span>
-        <span>I’m Kevin</span>
-      </h2>
-      <h3
-        class='text-2xl text-pretty sm:text-3xl font-normal text-white max-w-[730px] mt-4'
-      >
-        <strong>Fullstack Developer</strong> with 2 years building responsive, fast,
-        and maintainable
-        <strong>Web Applications</strong>.
-      </h3>
-      <Socials />
-    </Section>
+        Click on a project to know more or
+        <a
+          class='flex items-center gap-1 text-white font-normal hover:underline'
+          href='/projects'
+        >
+          explore all my projects
+          <ArrowDiagonalIcon className='size-4 stroke-[3px]' />
+        </a>
+      </span>
+    </div>
 
-    <Section class='gap-8' id='projects'>
-      <Title {...SECTIONS.PROJECTS} />
+    <StarredProjects />
+  </PageSection>
 
-      <div
-        class={`
-					xl:grid [grid-template-columns:5fr_1fr_5fr] 
-					flex flex-col gap-8 items-start
-				`}
-      >
-        {PROJECTS.map((proj, i) => <Project {...proj} index={i} />)}
-      </div>
-    </Section>
-
-    <Section class='gap-6' id='about'>
-      <Title {...SECTIONS.ABOUT} />
-      <div
-        class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl'
-      >
-        <p>
-          I'm Kevin Rodriguez, a final-year engineering student and
-          <strong>Fullstack Developer</strong> with 2 years of experience shipping
-          projects from concept to production.
-        </p>
-        <p>
-          I specialize in building responsive, fast, and scalable web
-          applications that people <strong>enjoy</strong> using. Known for strong
-          <strong>attention to detail</strong> and <strong
-            >problem-solving</strong
-          >, I adapt quickly across the stack to deliver clean, reliable
-          products and innovative solutions.
-        </p>
-      </div>
-    </Section>
-
-    <Footer />
-
-    <ContactForm client:idle />
-  </main>
+  <PageSection class='gap-6' id='about'>
+    <SectionTitle {...SECTIONS.ABOUT} />
+    <article
+      class='text-xl font-light text-gray-200 flex flex-col gap-5 text-pretty max-w-4xl [&_strong]:text-light-gradient'
+    >
+      <p scroll-fade={2}>
+        I'm Kevin Rodriguez, a final-year engineering student and
+        <strong>Fullstack Developer</strong> with 2 years of experience shipping projects
+        from concept to production.
+      </p>
+      <p scroll-fade={2.5}>
+        I specialize in building responsive, fast, and scalable web applications
+        that people <strong>enjoy</strong> using. Known for strong
+        <strong>attention to detail</strong> and <strong>problem-solving</strong
+        >, I adapt quickly across the stack to deliver clean, reliable products
+        and innovative solutions.
+      </p>
+    </article>
+    <GradientButton href='/contact' noBlankTarget scroll-fade={3.5}>
+      <MailIcon />
+      Contact me
+    </GradientButton>
+  </PageSection>
 </Layout>
-
-<style is:global>
-  #home h3 strong {
-    @apply bg-clip-text text-transparent font-extrabold 
-			bg-gradient-to-r from-[#8e63f3] to-[#5d6bff];
-  }
-  #about p {
-    strong {
-      @apply bg-clip-text text-transparent bg-gradient-to-l from-[#9998fd] to-[#b09eec] font-semibold;
-    }
-    a {
-      @apply text-white hover:underline;
-    }
-  }
-
-  @media (max-width: 1279px) {
-    #project {
-      &:nth-child(1) {
-        order: 1;
-      }
-      &:nth-child(2) {
-        order: 3;
-      }
-      &:nth-child(3) {
-        order: 4;
-      }
-      &:nth-child(4) {
-        order: 2;
-      }
-    }
-  }
-</style>

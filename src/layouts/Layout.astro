@@ -1,58 +1,96 @@
 ---
-import Background from '@components/Background.astro'
+import AppFooter from '@@/AppFooter.astro'
+import Background from '@@/Background.astro'
+import AppNavigationBar from '@@/app-navigation-bar/AppNavigationBar.astro'
+import { twMerge } from 'tailwind-merge'
+
+import '../../node_modules/@k3vndev/react-carousel/dist/index.css'
+import '../styles.css'
 
 interface Props {
   title: string
+  description?: string
+  class?: string
 }
 
-const { title } = Astro.props
+const {
+  title,
+  description = 'Software developer focused on Web Development. Specialized on building enjoyable web experiences.',
+  class: className = '',
+} = Astro.props
 ---
 
 <!doctype html>
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta
-      name='description'
-      content='Software developer focused on Web Development. Specialized on building enjoyable web experiences.'
-    />
+    <meta name='description' content={description} />
     <meta name='viewport' content='width=device-width' />
-    <link rel='shortcut icon' href='./icon.svg' type='image/x-icon' />
+    <link rel='shortcut icon' href='/icon.svg' type='image/x-icon' />
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class='bg-[#151515] overflow-x-hidden flex justify-center'>
-    <slot />
+  <body
+    class={twMerge(
+      `bg-[#151515] overflow-x-hidden flex justify-center ${className} min-h-dvh`
+    )}
+  >
+    <AppNavigationBar />
+
+    <main class='flex flex-col md:gap-52 gap-40 max-w-page w-full'>
+      <slot />
+      <AppFooter />
+    </main>
+
     <Background />
   </body>
 </html>
 
-<style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+<script>
+  /*
+    Scroll fade elements.
+    Note: Every element should initially have 'opacity-0' class for a better effect.
+  */
 
-  * {
-    font-family:
-      Inter,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Open Sans',
-      'Helvetica Neue',
-      sans-serif;
+  const SCROLL_FADE_PROP = 'scroll-fade'
+  const ANIMATION_CLASSES = ['animate-appear', 'anim-fill-both', 'opacity-100']
+  const OPACITY_ZERO_CLASS = 'opacity-0'
+  const MIN_INSTANT_TIME = 900
+
+  const DELAY = { SHORT: 50, LONG: 100 }
+
+  const elements = document.querySelectorAll(`[${SCROLL_FADE_PROP}]`)
+
+  const handleElement = (element: HTMLElement, delayFactor: number) => {
+    const delayValue = element.getAttribute(SCROLL_FADE_PROP)
+
+    const observer = new IntersectionObserver(
+      ([{ time, isIntersecting }]) => {
+        if (!isIntersecting || !('style' in element)) return
+
+        const delayTime = time < MIN_INSTANT_TIME ? DELAY.LONG : DELAY.SHORT
+        element.style.animationDelay = `${delayTime * delayFactor}ms`
+        console.log(`${delayTime * delayFactor}ms`)
+
+        // Skip delays
+        element.classList.remove(OPACITY_ZERO_CLASS)
+        element.classList.add(...ANIMATION_CLASSES)
+
+        observer.disconnect()
+      },
+      { rootMargin: '100px' }
+    )
+    observer.observe(element)
   }
 
-  :root {
-    --proj-p: 10px;
-    --link-btn-bg: rgb(10, 10, 10);
-    --gradient: linear-gradient(#700aff, #2e0bdc, #6f00ff, #700aff);
-  }
+  for (const element of elements) {
+    // Get delay factor
+    const delayFactor = element.getAttribute(SCROLL_FADE_PROP)
+    if (!delayFactor || Number.isNaN(+delayFactor - 1)) {
+      console.error('Invalid value given at', element)
+      break
+    }
 
-  html {
-    scroll-behavior: smooth;
+    handleElement(element as HTMLElement, +delayFactor)
   }
-</style>
+</script>

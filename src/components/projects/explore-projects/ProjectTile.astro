@@ -1,0 +1,49 @@
+---
+import { getProjectImages } from '@/utils/getProjectImages'
+import { PROJECT_APPEAR_SPEED } from '@consts'
+import ProjectButtons from '../ProjectButtons.astro'
+import ProjectHyperlink from '../ProjectHyperlink.astro'
+import Technologies from '../Technologies.astro'
+import type { ExploreProject } from './ExploreProjects.astro'
+import StarredGradientStar from './StarredGradientStar.astro'
+
+interface Props extends ExploreProject {}
+const { name, overview, mainTechnologies, code, preview, index, starred } =
+  Astro.props
+
+// Fetch the first image for the project tile
+const carouselImgs = await getProjectImages(name, 'carousel')
+const [imageSrc] = carouselImgs
+const scrollFade = 2 + index * PROJECT_APPEAR_SPEED
+---
+
+<article
+  class='flex flex-col project-card rounded-xl overflow-clip relative group opacity-0'
+  scroll-fade={scrollFade}
+>
+  <ProjectHyperlink projectName={name} />
+
+  <div class='sm:h-50 h-40 w-full relative'>
+    <img
+      src={imageSrc}
+      alt={name}
+      class='w-full group-hover:w-[110%] h-[140%] object-cover object-center absolute top-0 left-0 -z-10 group-hover:scale-105 transition duration-300'
+    />
+  </div>
+
+  <div class='flex flex-col p-8 gap-2'>
+    <h2 class='text-white font-bold text-2xl mb-2'>{name}</h2>
+    <Technologies technologies={mainTechnologies} />
+    <p class='text-zinc-300'>{overview}</p>
+
+    <ProjectButtons {...{ code, preview, name }} class='mt-4' />
+  </div>
+
+  {starred && <StarredGradientStar index={index} />}
+</article>
+
+<style>
+  img {
+    mask-image: linear-gradient(to bottom, black 50%, transparent);
+  }
+</style>

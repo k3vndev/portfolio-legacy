@@ -1,0 +1,38 @@
+---
+import SectionTitle from '@@/SectionTitle.astro'
+import { ChevronIcon } from '@@/icons'
+
+interface Props {
+  list: string[]
+  icon: any
+  title: string
+  split?: boolean
+}
+
+const { list, icon, title, split = false } = Astro.props
+---
+
+<section class='flex flex-col gap-6 mt-16'>
+  <SectionTitle label={title} icon={icon} />
+  <ul class='flex flex-col gap-3 opacity-0' scroll-fade={2}>
+    {
+      list.map((item) => {
+        const [subtitle, description] = item.split('—')
+
+        return (
+          <li class='text-lg text-white/75 text-pretty flex items-start gap-4 lg:ml-8 ml-4'>
+            <ChevronIcon className='stroke-3 min-w-5 size-5 text-[#655f98] mt-1' />
+            {split ? (
+              <span>
+                <strong class='text-white/90'>{subtitle} → </strong>
+                <span>{description}</span>
+              </span>
+            ) : (
+              <span>{item}</span>
+            )}
+          </li>
+        )
+      })
+    }
+  </ul>
+</section>

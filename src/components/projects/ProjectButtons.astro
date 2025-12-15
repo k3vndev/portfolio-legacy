@@ -1,0 +1,31 @@
+---
+import { GithubIcon, PreviewIcon } from '@@/icons'
+import { twMerge } from 'tailwind-merge'
+import Button from './Button.astro'
+
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  code: string
+  preview?: string
+  name: string
+  class?: string
+}
+
+const { code, preview, name, class: className, ...props } = Astro.props
+---
+
+<section class={twMerge(`flex gap-2 ${className}`)} {...props}>
+  {/* Code Button */}
+  <Button href={code} projectName={name} label='Code' icon={GithubIcon} />
+
+  {/* Optional Preview Button */}
+  {
+    preview && (
+      <Button
+        href={preview}
+        projectName={name}
+        label='Preview'
+        icon={PreviewIcon}
+      />
+    )
+  }
+</section>

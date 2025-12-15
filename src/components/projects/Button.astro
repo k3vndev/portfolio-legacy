@@ -1,0 +1,21 @@
+---
+import LinkButton from '@@/LinkButton.astro'
+
+interface Props {
+  href: string
+  projectName: string
+  label: string
+  icon: (_props: Record<string, any>) => any
+}
+
+const { href, projectName, label, icon: Icon } = Astro.props
+---
+
+<LinkButton
+  href={href}
+  ariaLabel={`${label} of ${projectName}`}
+  class='flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full z-40 [&>svg]:size-5'
+>
+  <Icon />
+  {label}
+</LinkButton>

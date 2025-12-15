@@ -11,12 +11,12 @@ const waitTimes = {
 }
 
 const spritesheets = {
-  walk: './cat/walk.gif',
-  idle: './cat/idle.gif',
-  lick: './cat/lick.gif'
+  walk: '/cat/walk.gif',
+  idle: '/cat/idle.gif',
+  lick: '/cat/lick.gif'
 }
 
-const lickChance = 0.66
+const lickChance = 0.3
 
 export const Cat = () => {
   const [mode, setMode] = useState<Mode>('walk')

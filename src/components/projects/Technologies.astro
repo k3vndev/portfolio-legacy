@@ -1,0 +1,19 @@
+---
+import type { Tecnology } from '@types'
+import { twMerge } from 'tailwind-merge'
+import TechnologyBadge from './TechnologyBadge.astro'
+
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  technologies: Tecnology[]
+  class?: string
+}
+
+const { technologies, class: className, ...props } = Astro.props as Props
+---
+
+<ul
+  class={twMerge(`flex gap-1 flex-nowrap items-center ${className}`)}
+  {...props}
+>
+  {technologies.map((tech) => <TechnologyBadge {...tech} />)}
+</ul>

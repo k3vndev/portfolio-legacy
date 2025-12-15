@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string
+  ariaLabel: string
+  class?: string
+  noBlankTarget?: boolean
+  style?: string
+}
+
+const { href, ariaLabel, noBlankTarget, style } = Astro.props
+const propClass = Astro.props.class ?? ''
+
+const props = noBlankTarget
+  ? {}
+  : { target: '_blank', rel: 'noopener noreferrer' }
+---
+
+<a
+  href={href}
+  aria-label={ariaLabel}
+  class={`
+    bg-link-btn-bg flex items-center text-white border border-[#444]
+    transition hover:brightness-150 active:scale-95 active:brightness-90
+    ${propClass}
+  `}
+  style={style}
+  {...props}
+>
+  <slot />
+</a>

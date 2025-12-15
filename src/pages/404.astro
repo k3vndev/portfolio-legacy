@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NotFoundScreen from '@@/NotFoundScreen.astro'
+---
+
+<Layout title='Page not Found' class='h-dvh overflow-hidden'>
+  <NotFoundScreen
+    message="Sorry, we couldn't find the page you're looking for :("
+    action={{ label: 'Go home', href: '/' }}
+  />
+</Layout>

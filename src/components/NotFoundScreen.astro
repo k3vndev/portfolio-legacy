@@ -1,0 +1,58 @@
+---
+import { ArrowIcon } from '@icons'
+import LinkButton from './LinkButton.astro'
+
+interface Props {
+  message: string
+  action?: {
+    label: string
+    href: string
+  }
+}
+
+const { message, action } = Astro.props
+---
+
+<div
+  class=`
+    flex flex-col items-center w-full max-w-page gap-8
+    margin-top-page pt-[3vw] mx-auto
+  `
+>
+  <h1
+    class=`
+      md:text-[150px] text-[100px] font-black leading-[100%] scale-110
+      bg-linear-to-r from-[#674AE9] to-[#BD5BFF] bg-clip-text text-transparent
+      animate-appear
+    `
+  >
+    404
+  </h1>
+
+  <div
+    class='bg-white/5 border-white/15 border-2 rounded-xl md:px-20 px-8 py-6 animate-appear anim-delay-150'
+  >
+    <h2
+      class=`
+        md:text-4xl sm:text-2xl text-xl bg-linear-to-br from-white to-[#999] text-pretty
+        font-semibold bg-clip-text text-transparent text-center max-w-xl
+      `
+    >
+      {message}
+    </h2>
+  </div>
+
+  {
+    action && (
+      <LinkButton
+        class='rounded-full py-2 px-8 gap-2 sm:text-lg text-nowrap animate-appear anim-delay-500'
+        href={action.href}
+        ariaLabel={action.label}
+        noBlankTarget
+      >
+        <ArrowIcon />
+        {action.label}
+      </LinkButton>
+    )
+  }
+</div>

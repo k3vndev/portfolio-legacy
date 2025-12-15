@@ -1,0 +1,60 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Import TailwindCSS */
+@import 'tailwindcss';
+@source "../node_modules/@k3vndev/react-carousel";
+@import '@k3vndev/tw-animations';
+
+body {
+  font-family: var(--font-inter);
+  color-scheme: dark;
+}
+
+/* Theme variables */
+@theme inline {
+  --color-link-btn-bg: rgb(12, 12, 12);
+
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  --font-poppins: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.set-anim-delay {
+  animation-delay: calc(var(--set-anim-delay-index) * 1ms);
+}
+
+@utility project-card {
+  background-color: rgba(255, 255, 255, 0.045);
+  border-color: rgba(85, 85, 85, 0.5);
+  border-width: 2px;
+  @apply transition duration-300;
+
+  &:hover {
+    border-color: rgba(85, 85, 85, 0.7);
+    cursor: pointer;
+  }
+}
+
+/* Page layout utilities */
+@utility margin-top-page {
+  @apply xl:mt-44 lg:mt-36 md:mt-32 mt-28;
+}
+@utility max-w-page {
+  @apply xl:max-w-300 lg:max-w-4xl sm:max-w-[calc(100%-4rem)] max-w-[calc(100%-2rem)];
+}
+
+/* Text gradients */
+@utility text-strong-gradient {
+  @apply bg-clip-text text-transparent font-extrabold bg-linear-to-r from-[#8e63f3] to-[#5d6bff];
+}
+@utility text-light-gradient {
+  @apply bg-clip-text text-transparent bg-linear-to-l from-[#9998fd] to-[#b09eec] font-semibold;
+}
+
+@utility animate-appear {
+  @apply animate-slide-in-b anim-blur-sm anim-opacity-0 anim-ease-out-back;
+}
