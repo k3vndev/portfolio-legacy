@@ -1,5 +1,5 @@
-import netlify from '@astrojs/netlify'
 import react from '@astrojs/react'
+import vercel from '@astrojs/vercel'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
@@ -8,5 +8,5 @@ export default defineConfig({
   output: 'server',
   vite: { plugins: [tailwindcss()] },
   integrations: [react()],
-  adapter: netlify()
+  adapter: vercel()
 })

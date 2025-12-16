@@ -1,5 +1,3 @@
-import { useId } from 'react'
-
 type Props = React.SVGProps<SVGSVGElement>
 
 export const AboutIcon = (props: Props) => (
