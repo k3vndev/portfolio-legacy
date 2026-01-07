@@ -9,8 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.2",
     "@astrojs/react": "^4.4.2",
+    "@astrojs/vercel": "^9.0.3",
     "@k3vndev/react-carousel": "^0.2.6-i",
     "@k3vndev/tw-animations": "^0.3.0",
     "@tailwindcss/vite": "^4.1.17",
