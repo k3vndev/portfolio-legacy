@@ -48,11 +48,7 @@ const { pageTitle, pageDescription } = project
           {project.description}
         </p>
 
-        <Technologies
-          technologies={technologies}
-          class='flex-wrap opacity-0'
-          scroll-fade={4}
-        />
+        <Technologies technologies={technologies} class='flex-wrap' />
 
         <ProjectButtons
           name={project.name}
@@ -62,13 +58,11 @@ const { pageTitle, pageDescription } = project
           scroll-fade={3}
         />
 
-        {carouselImgs && (
-          <ProjectImagesCarousel
-            projectName={project.name}
-            images={carouselImgs}
-            client:load
-          />
-        )}
+        <ProjectImagesCarousel
+          projectName={project.name}
+          images={carouselImgs}
+          client:load
+        />
 
         <ListSection
           title='Features'

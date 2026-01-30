@@ -1,12 +1,27 @@
 ---
-const { label, icon: Icon } = Astro.props
+import { twMerge } from 'tailwind-merge'
+
+interface Props {
+  label: string
+  icon: any
+  class?: string
+  index: number
+}
+
+const { label, icon: Icon, class: className, index } = Astro.props
+const animationDelay = `${(index + 3) * 110}ms`
 ---
 
 <li
-  class=`
+  class={twMerge(
+    `
     flex gap-1 items-center bg-black rounded-full px-2 py-1 h-fit 
     border border-[#333] [&>svg]:size-3.5
-  `
+    animate-fade-in anim-scale-50 anim-ease-out-back anim-blur-md
+  `,
+    className,
+  )}
+  style={`animation-delay: ${animationDelay};`}
 >
   <Icon />
   <span class='text-white text-xs'>{label}</span>
