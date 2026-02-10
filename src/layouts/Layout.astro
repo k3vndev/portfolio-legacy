@@ -11,28 +11,99 @@ interface Props {
   title: string
   description?: string
   class?: string
+  canonical?: string
+  ogImage?: string
 }
 
 const {
   title,
-  description = 'Software developer focused on Web Development. Specialized on building enjoyable web experiences.',
+  description = 'Fullstack Developer with 2 years building responsive, fast, and maintainable Web Applications.',
   class: className = '',
+  canonical = new URL(Astro.url.pathname, Astro.site).toString(),
+  ogImage = new URL('/og-image.jpg', Astro.site).toString(),
 } = Astro.props
+
+// Set default title ending if not provided
+export const defaultPageTitleEnding = "Kevin's Portfolio"
+const hasEmDash = title.includes('—')
+const siteTitle = hasEmDash ? title : `${title} — ${defaultPageTitleEnding}`
 ---
 
 <!doctype html>
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <meta name='description' content={description} />
-    <meta name='viewport' content='width=device-width' />
+    <meta name='theme-color' content='#151515' />
+    <meta name='robots' content='index, follow' />
+    <meta name='author' content='Kevin Rodriguez' />
+
+    <!-- Canonical URL -->
+    <link rel='canonical' href={canonical} />
+
+    <!-- Open Graph Tags -->
+    <meta property='og:type' content='website' />
+    <meta property='og:title' content={siteTitle} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={ogImage} />
+    <meta
+      property='og:image:alt'
+      content='Kevin Rodriguez - Fullstack Developer Portfolio'
+    />
+    <meta property='og:url' content={canonical} />
+    <meta property='og:site_name' content="Kevin's Portfolio" />
+
+    <!-- Twitter Card Tags -->
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:title' content={siteTitle} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={ogImage} />
+
+    <!-- Additional SEO -->
     <link rel='shortcut icon' href='/icon.svg' type='image/x-icon' />
+    <link rel='apple-touch-icon' href='/icon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <title>{title}</title>
+    <title>{siteTitle}</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type='application/ld+json'>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kevin Rodriguez",
+        "url": "https://k3vn.dev",
+        "image": "https://k3vn.dev/og-image.png",
+        "description": "Fullstack Developer with 2 years building responsive, fast, and maintainable Web Applications",
+        "jobTitle": "Fullstack Developer",
+        "knowsAbout": [
+          "Web Development",
+          "Frontend Development",
+          "Backend Development",
+          "React",
+          "TypeScript",
+          "JavaScript"
+        ],
+        "sameAs": [
+          "https://github.com/k3vndev",
+          "https://linkedin.com/in/kevin-rodriguez"
+        ]
+      }
+    </script>
+
+    <script type='application/ld+json'>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kevin Rodriguez Portfolio",
+        "url": "https://k3vn.dev",
+        "description": "Fullstack Developer Portfolio"
+      }
+    </script>
   </head>
   <body
     class={twMerge(
-      `bg-[#151515] overflow-x-hidden flex justify-center ${className} min-h-dvh`
+      `bg-[#151515] overflow-x-hidden flex justify-center ${className} min-h-dvh`,
     )}
   >
     <AppNavigationBar />
@@ -78,7 +149,7 @@ const {
 
         observer.disconnect()
       },
-      { rootMargin: '100px' }
+      { rootMargin: '50px' },
     )
     observer.observe(element)
   }

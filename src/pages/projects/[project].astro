@@ -8,7 +8,6 @@ import ListSection from '@@/project-details-page/ListSection.astro'
 import { ProjectImagesCarousel } from '@@/project-details-page/ProjectImagesCarousel'
 import ProjectButtons from '@@/projects/ProjectButtons.astro'
 import Technologies from '@@/projects/Technologies.astro'
-import { TITLE_ENDING } from '@consts'
 import { BoltIcon, CodeIcon } from '@icons'
 
 const { project: projectSlug } = Astro.params
@@ -25,11 +24,11 @@ const carouselImgs = project
 
 const { pageTitle, pageDescription } = project
   ? {
-      pageTitle: `${project.name}${TITLE_ENDING}`,
+      pageTitle: project.name,
       pageDescription: project.overview,
     }
   : {
-      pageTitle: `Project not found${TITLE_ENDING}`,
+      pageTitle: '404 Project not found',
       pageDescription: 'The project you are looking for does not exist.',
     }
 ---
@@ -58,11 +57,13 @@ const { pageTitle, pageDescription } = project
           scroll-fade={3}
         />
 
-        <ProjectImagesCarousel
-          projectName={project.name}
-          images={carouselImgs}
-          client:load
-        />
+        <div class='min-h-24 w-full'>
+          <ProjectImagesCarousel
+            projectName={project.name}
+            images={carouselImgs}
+            client:load
+          />
+        </div>
 
         <ListSection
           title='Features'

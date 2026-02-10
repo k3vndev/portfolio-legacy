@@ -1,7 +1,9 @@
 {
-  "name": "portfolio",
+  "name": "k3vndev-portfolio",
+  "author": "k3vndev",
+  "description": "k3vndev's web development portfolio showcasing projects built with React, TypeScript, and modern web technologies. Explore interactive applications and more.",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

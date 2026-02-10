@@ -94,6 +94,4 @@ export const EVENTS = {
   FORM_SUBMIT: '$form-submit'
 }
 
-export const TITLE_ENDING = " — Kevin's Portfolio"
-
 export const PROJECT_APPEAR_SPEED = 0.4

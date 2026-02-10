@@ -4,8 +4,8 @@ import { defineConfig } from 'astro/config'
 
 import vercel from '@astrojs/vercel'
 
-// https://astro.build/config
 export default defineConfig({
+  site: 'https://k3vn.dev',
   output: 'server',
   vite: { plugins: [tailwindcss()] },
   integrations: [react()],

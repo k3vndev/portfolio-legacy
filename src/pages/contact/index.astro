@@ -2,10 +2,14 @@
 import Layout from '@/layouts/Layout.astro'
 import { CopyText } from '@@/CopyText.tsx'
 import { ContactForm } from '@@/contact-form/ContactForm'
-import { EMAIL, TITLE_ENDING } from '@consts'
+import { EMAIL } from '@consts'
 ---
 
-<Layout title={`Contact${TITLE_ENDING}`} class='[&>main]:gap-16'>
+<Layout
+  title='Contact'
+  class='[&>main]:gap-16'
+  description='Get in touch with Kevin Rodriguez for web development projects, collaborations, or inquiries. Contact form and email available.'
+>
   <section class='margin-top-page flex gap-8 flex-col font-poppins'>
     <h1
       class='font-poppins xl:text-7xl lg:text-6xl text-5xl max-w-4xl text-white font-bold gradient-subtitle [&>strong]:text-strong-gradient animate-appear'
