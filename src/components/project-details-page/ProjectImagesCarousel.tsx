@@ -29,10 +29,10 @@ export const ProjectImagesCarousel = ({ projectName, images }: Props) => {
       {images.map((imgSrc, index) => (
         <CarouselItem
           key={index}
-          className='overflow-clip bg-white/5 flex text-white/50 border-2 border-white/5'
+          className='overflow-clip bg-white/5 flex text-white/50 border-y border-white/5'
         >
           <img
-            className='size-full object-cover aspect-5/3 animate-fade-in anim-blur-xl anim-scale-125 anim-ease-out-sine anim-duration-500'
+            className='size-full object-cover aspect-5/3 animate-fade-in anim-blur-xl anim-scale-125 anim-ease-out-sine anim-duration-500 hover:scale-92 transition anim-fill-backwards rounded-xl'
             src={imgSrc}
             alt={`Showcase of the project ${projectName}`}
             draggable={false}
